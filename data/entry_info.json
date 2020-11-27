@@ -1,7 +1,4 @@
 [{
-    id: 18171128,
-    WYAS_Link: 'https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001%2f7%2f9%2f6%2f1%2f26',
-    // location: 'San Francisco, CA',
-    startDate: new Date(1817,6,16),
-    endDate: new Date(1817,6,16)
+    "id": 18171128,
+    "WYAS_Link": "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001%2f7%2f9%2f6%2f1%2f26"
 }]
