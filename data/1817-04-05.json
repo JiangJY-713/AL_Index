@@ -1,0 +1,50 @@
+[{
+    "id": "1817,4,5",
+    "date":{
+    	"year":1817,
+    	"month": 4,
+    	"day":5
+    },
+    "wyasLink": {
+    	"journal":["https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001%2f7%2f9%2f6%2f1%2f3",
+            "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001%2f7%2f9%2f6%2f1%2f4"],
+    	"journal_index":[],
+    	"travel_note":[]
+
+    },
+    "TRX":{
+    	"wyas":"y",
+    	"other":[{
+    		"link":[],
+    		"credit":[]
+    	}]
+    },
+    "tag":{
+    	"letter":{
+    		"entry":[{
+    			"from":["Mariana Lawton"],
+    			"to":[]
+    		}],
+    		"progress":"complete"
+    	},
+    	"book":[],
+    	"people":{
+    		"entry":["Anne Lister (senior)","Mariana Lawton","James Lister","Charles Howarth","Joes Mills"],
+    		"progress":"complete"
+    	},
+    	"clothes":[],
+    	"place":{
+    		"entry":[{
+    			    "name":[],
+    				"coordinates":[]
+    		}],
+    		"progress":"partial"
+    	},
+    	"doodle":{
+    		"entry":[],
+    		"progress":"complete"
+    	},
+    	"progress":"complete"
+
+    }
+}]
