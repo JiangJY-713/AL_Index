@@ -11,17 +11,17 @@
     	"travel_note":[]
 
     },
-    "Tr":{
+    "TRX":{
     	"wyas":"n",
-    	"other":{
-    		"link":["https://veryfineday.tumblr.com/post/640941209286787072/wednesday-27-november-1822"],
-    		"credit":["JY Jiang"]
-    	}
+    	"other":[{
+    		"link":"https://veryfineday.tumblr.com/post/640941209286787072/wednesday-27-november-1822",
+    		"credit":"Jiang JY"
+    	}]
     },
     "tag":{
     	"letter":{
     		"entry":[{
-    			"from":["Mariana Lawton"],
+    			"from":[],
     			"to":[]
     		}],
     		"progress":"complete"
