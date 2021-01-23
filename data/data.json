@@ -6032,6 +6032,46 @@
         "tag": {}
     },
     {
+        "id": "1822,12,1",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "link": [
+                        "https://veryfineday.tumblr.com/post/641114123859607552/sunday-1-december-1822"
+                    ],
+                    "credit": "JY Jiang"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1822,12,2",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "link": [
+                        "https://veryfineday.tumblr.com/post/641114205672636416/monday-2-december-1822"
+                    ],
+                    "credit": "JY Jiang"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
         "id": "1823,4,26",
         "wyasLink": {
             "journal": [],
@@ -24875,6 +24915,26 @@
                 {
                     "link": [
                         "https://agreeableizing.blogspot.com/2021/01/thursday-april-1-1830.html"
+                    ],
+                    "credit": "Jane Kendall (@janekendalljane)"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1830,4,2",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "link": [
+                        "https://agreeableizing.blogspot.com/2021/01/friday-april-2-1830.html"
                     ],
                     "credit": "Jane Kendall (@janekendalljane)"
                 }
