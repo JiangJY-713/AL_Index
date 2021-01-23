@@ -27244,6 +27244,26 @@
         "tag": {}
     },
     {
+        "id": "1830,4,4",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "link": [
+                        "https://agreeableizing.blogspot.com/2021/01/sunday-april-4-1830.html"
+                    ],
+                    "credit": "Jane Kendall (@janekendalljane)"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
         "id": "1830,5,5",
         "wyasLink": {
             "journal": [],
@@ -37734,6 +37754,26 @@
                 {
                     "link": [
                         "https://wrotetheaboveoftoday.tumblr.com/post/641031102855872512/1833-thurs-14-march"
+                    ],
+                    "credit": "Erin Resso (@deejayres)"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1833,3,15",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "link": [
+                        "https://wrotetheaboveoftoday.tumblr.com/post/641121727601049600/1833-fri-15-march"
                     ],
                     "credit": "Erin Resso (@deejayres)"
                 }
