@@ -258,6 +258,762 @@
         "tag": {}
     },
     {
+        "id": "1819,6,24",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/09/29/24th-june-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,6,25",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/09/30/25th-june-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,6,26",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/01/june-26th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,6,27",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/02/june-27th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,6,29",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/08/june-29th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,9,27",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/09/27/27th-september-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,9,28",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/09/28/28th-september-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,9,29",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/09/29/september-29th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,9,30",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/09/30/30th-september-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,1",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/01/october-1st-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,2",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/02/october-2nd-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,3",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/03/october-3rd-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,4",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/04/october-4th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,5",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/05/october-5th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,6",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/06/october-6th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,7",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/07/october-7th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,8",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/08/october-8th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,9",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/09/october-9th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,10",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/10/october-10th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,11",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/11/october-11th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,13",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/13/october-13th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,14",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/14/october-14th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,15",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/15/october-15th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,16",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/16/october-16th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,17",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/17/october-17th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,18",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/18/october-18th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,19",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/19/october-19th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,20",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/20/october-20th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,21",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/21/october-21st/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,22",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/22/october-22nd-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,23",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/24/october-23rd-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,24",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/24/october-24th-1819-2/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,25",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/25/october-25th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,26",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/26/october-26th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,27",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/10/27/october-27th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,28",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/11/12/october-28th-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,29",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/11/12/29th-october-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,30",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/12/24/saturday-30th-oct-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,10,31",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2019/12/25/31st-october-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,11,1",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2020/01/02/1st-november-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,11,2",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2020/01/02/2nd-november-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1819,11,4",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "Ripley",
+                    "link": "https://annelister665915140.wordpress.com/2020/01/07/4th-november-1819/"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
         "id": "1822,11,27",
         "wyasLink": {
             "journal": [
