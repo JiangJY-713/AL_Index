@@ -115,51 +115,634 @@
     },
     {
         "id": "1822,11,27",
-        "date":{
-            "year":1822,
-            "month": 11,
-            "day":27
-        },
         "wyasLink": {
-            "journal":["https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00006%2f7%2f9%2f6%2f1%2f72"],
-            "journal_index":[],
-            "travel_note":[]
-
+            "journal": [
+                "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00006%2f7%2f9%2f6%2f1%2f72"
+            ],
+            "journal_index": [],
+            "travel_note": []
         },
-        "Tr":{
-            "wyas":"n",
-            "other":[{
-                "link":"https://veryfineday.tumblr.com/post/640941209286787072/wednesday-27-november-1822",
-                "credit":"Jiang JY"
-            }]
+        "Tr": {
+            "wyas": "n",
+            "other": [
+                {
+                    "link": "https://veryfineday.tumblr.com/post/640941209286787072/wednesday-27-november-1822",
+                    "credit": "Jiang JY"
+                }
+            ]
         },
-        "tag":{
-            "letter":{
-                "entry":[{
-                    "from":[],
-                    "to":[]
-                }],
-                "progress":"complete"
+        "tag": {
+            "letter": {
+                "entry": [
+                    {
+                        "from": [],
+                        "to": []
+                    }
+                ],
+                "progress": "complete"
             },
-            "book":[],
-            "people":{
-                "entry":["Anne Lister (senior)","Mariana Lawton","James Lister","Charles Howarth","Joes Mills"],
-                "progress":"complete"
+            "book": [],
+            "people": {
+                "entry": [
+                    "Anne Lister (senior)",
+                    "Mariana Lawton",
+                    "James Lister",
+                    "Charles Howarth",
+                    "Joes Mills"
+                ],
+                "progress": "complete"
             },
-            "clothes":[],
-            "place":{
-                "entry":[{
-                        "name":[],
-                        "coordinates":[]
-                }],
-                "progress":"partial"
+            "clothes": [],
+            "place": {
+                "entry": [
+                    {
+                        "name": [],
+                        "coordinates": []
+                    }
+                ],
+                "progress": "partial"
             },
-            "doodle":{
-                "entry":[],
-                "progress":"complete"
+            "doodle": {
+                "entry": [],
+                "progress": "complete"
             },
-            "progress":"complete"
-
+            "progress": "complete"
         }
+    },
+    {
+        "id": "1822,11,28",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/640941303763533824/thursday-28-november-1822"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1822,11,29",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/641023529928802304/friday-29-november-1822"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1822,11,30",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/641023632777297920/saturday-30-november-1822"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,18",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/636765455943598080/wednesday-18-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,17",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/636674868339949568/tuesday-17-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,16",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/636584250140983296/monday-16-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,15",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/636493646636728320/sunday-15-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,14",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/636403078037438464/saturday-14-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,13",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/636312485195137024/friday-13-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,12",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/636221860509614080/thursday-12-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,11",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/636131274140106752/wednesday-11-fabruary-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,10",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/636040674296414209/tuesday-10-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,9",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635950185530507264/monday-9-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,8",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635950080064618496/sunday-8-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,7",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635859488765788161/saturday-7-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,6",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635768863978602496/friday-6-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,5",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635678293762457600/thursday-5-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,4",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635587688739864577/wednesday-4-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,3",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635497084945088512/tuesday-3-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,2",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635406604726091776/monday-2-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,1",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635406492552544256/sunday-1-february-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,1,31",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635315893695627265/saturday-31-january-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,1,30",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635225287762788352/friday-30-january-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,1,29",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635134718861590529/thursday-29-january-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,1,28",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/635026837635022848/wednesday-28-january-1835"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1833,12,6",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/634681719754211328/friday-6-december-1833"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1833,12,5",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/634591137453260800/thursday-5-december-1833"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1833,12,4",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/634500644791844864/wednesday-3-4-december-1833"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1833,12,3",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/634500538315276288/tuesday-3-december-1833"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1833,12,2",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/634410046089986048/monday-2-december-1833"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1833,12,1",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/634409931150393344/december-sunday-1-1833"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
+        "id": "1833,11,30",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "credit": "JY Jiang",
+                    "link": "https://veryfineday.tumblr.com/post/634319324493004800/saturday-30-november-1833"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
     }
 ]
