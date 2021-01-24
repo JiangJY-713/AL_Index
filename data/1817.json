@@ -1,0 +1,43 @@
+[
+    {
+        "id": "1817,4,5",
+        "wyasLink": {
+            "journal": [
+                "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001%2f7%2f9%2f6%2f1%2f3",
+                "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001%2f7%2f9%2f6%2f1%2f4"
+            ],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "y",
+            "other": [
+                {
+                    "link": [],
+                    "credit": []
+                }
+            ]
+        },
+        "tag": {}
+    },
+    {
+        "id": "1817,11,28",
+        "wyasLink": {
+            "journal": [
+                "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001%2f7%2f9%2f6%2f1%2f55"
+            ],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "y",
+            "other": [
+                {
+                    "link": [],
+                    "credit": []
+                }
+            ]
+        },
+        "tag": {}
+    }
+]

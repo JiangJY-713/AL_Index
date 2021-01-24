@@ -1,0 +1,35 @@
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+
+#calendar {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 380px);
+}
+
+#events-log {
+  display: inline-block;
+  vertical-align: top;
+  width: 340px;
+  background-color: #e5e5e5;
+  padding: 10px;
+  min-height: 200px;
+  border-radius: 10px;
+}
+
+#events-log div {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.event-tooltip-content {
+  padding: 5px;
+}
+
+.event-tooltip-content:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+

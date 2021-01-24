@@ -1,0 +1,49 @@
+[{
+    "id": "1822,11,27",
+    "date":{
+    	"year":1822,
+    	"month": 11,
+    	"day":27
+    },
+    "wyasLink": {
+    	"journal":["https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00006%2f7%2f9%2f6%2f1%2f72"],
+    	"journal_index":[],
+    	"travel_note":[]
+
+    },
+    "Tr":{
+    	"wyas":"n",
+    	"other":[{
+    		"link":"https://veryfineday.tumblr.com/post/640941209286787072/wednesday-27-november-1822",
+    		"credit":"Jiang JY"
+    	}]
+    },
+    "tag":{
+    	"letter":{
+    		"entry":[{
+    			"from":[],
+    			"to":[]
+    		}],
+    		"progress":"complete"
+    	},
+    	"book":[],
+    	"people":{
+    		"entry":["Anne Lister (senior)","Mariana Lawton","James Lister","Charles Howarth","Joes Mills"],
+    		"progress":"complete"
+    	},
+    	"clothes":[],
+    	"place":{
+    		"entry":[{
+    			    "name":[],
+    				"coordinates":[]
+    		}],
+    		"progress":"partial"
+    	},
+    	"doodle":{
+    		"entry":[],
+    		"progress":"complete"
+    	},
+    	"progress":"complete"
+
+    }
+}]
