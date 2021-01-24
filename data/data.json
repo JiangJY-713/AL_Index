@@ -45283,6 +45283,26 @@
         "tag": {}
     },
     {
+        "id": "1836,10,10",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "link": [
+                        "https://iknowmyownheart.co.uk/anne-lister-diary-transcriptions/anne-lister-diary-1836/10-october-1836/"
+                    ],
+                    "credit": "Leigh Mitchinson"
+                }
+            ],
+            "wyas": "n"
+        },
+        "tag": {}
+    },
+    {
         "id": "1836,12,4",
         "wyasLink": {
             "journal": [],
@@ -49124,6 +49144,26 @@
                     ]
                 }
             ]
+        },
+        "tag": {}
+    },
+    {
+        "id": "1840,8,13",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "other": [
+                {
+                    "link": [
+                        "https://iknowmyownheart.co.uk/anne-lister-diary-transcriptions/anne-lister-diary-1840/11-august-1840/"
+                    ],
+                    "credit": "Leigh Mitchinson"
+                }
+            ],
+            "wyas": "n"
         },
         "tag": {}
     }
