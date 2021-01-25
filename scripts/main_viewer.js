@@ -1,4 +1,4 @@
-const calendar = new Calendar('#calendar', {
+var calendar = new Calendar('#calendar', {
     startYear: 1817,
     style: 'background',
     minDate: new Date(1800,4, 21),
