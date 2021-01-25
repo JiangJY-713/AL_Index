@@ -1,4 +1,4 @@
-const calendar = new Calendar('#calendar', {
+var calendar = new Calendar('#calendar', {
     startYear: 1817,
     style: 'background',
     minDate: new Date(1800,4, 21),
@@ -201,12 +201,20 @@ document.querySelector('#TrProgress').addEventListener('click', function() {
 
 function unpackEntry(entry_info){
    return entry_info.map(x=>({
-    startDate: new Date(x.id),
-    endDate: new Date(x.id),
+    startDate:id2Date(x.id),
+    endDate:id2Date(x.id),
     wyasLink: x.wyasLink,
     Tr: x.Tr,
     tag: x.tag
    }))
+}
+
+function id2Date(id){
+    date_element = id.split(",");
+    yy = Number(date_element[0]);
+    mm = Number(date_element[1]);
+    dd = Number(date_element[2]);
+    return new Date(yy,mm,dd);
 }
 
 function packEntry(dataSource){
