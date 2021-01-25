@@ -16,7 +16,7 @@ Available transcripts can be found [here](https://jiangjy-713.github.io/AL_Index
 
 ### To-do List
 - [ ] Register WYAS reference
-- [ ] Display days that have blank pages/travel notes 
+- [ ] Display days that have blank pages/travel notes/Anne's index 
 - [ ] Transcipts 
     - [x] Register online journal transcripts
     - [ ] Register online travel notes transcripts
