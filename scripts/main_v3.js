@@ -213,7 +213,7 @@ function unpackEntry(entry_info){
 function id2Date(id){
     date_element = id.split(",");
     yy = Number(date_element[0]);
-    mm = Number(date_element[1]);
+    mm = Number(date_element[1])-1;
     dd = Number(date_element[2]);
     return new Date(yy,mm,dd);
 }
@@ -228,7 +228,7 @@ function packEntry(dataSource){
 }
 
 function EntryObj(){
-    this.startDate = "";
+    this.startDate = "";    //"year,month,day",eg. "1817,4,5"
     this.endDate = "";
     this.wyasLink = {};
     this.wyasLink.journal = [];
