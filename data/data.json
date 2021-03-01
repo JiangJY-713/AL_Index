@@ -45743,6 +45743,66 @@
         "tag": {}
     },
     {
+        "id": "1834,2,27",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "n",
+            "other": [
+                {
+                    "link": [
+                        "https://whatdoesshedotothem.tumblr.com/post/644278201891356672/thursday-27-february-1834-sh7mle160174"
+                    ],
+                    "credit": "Frankie"
+                }
+            ]
+        },
+        "tag": {}
+    },
+    {
+        "id": "1834,2,28",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "n",
+            "other": [
+                {
+                    "link": [
+                        "https://whatdoesshedotothem.tumblr.com/post/644370112824147968/friday-28-february-1834-sh7mle160174"
+                    ],
+                    "credit": "Frankie"
+                }
+            ]
+        },
+        "tag": {}
+    },
+    {
+        "id": "1834,3,1",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "n",
+            "other": [
+                {
+                    "link": [
+                        "https://whatdoesshedotothem.tumblr.com/post/644442676096368640/saturday-1-march-1834-sh7mle160175"
+                    ],
+                    "credit": "Frankie"
+                }
+            ]
+        },
+        "tag": {}
+    },
+    {
         "id": "1834,3,5",
         "wyasLink": {
             "journal": [],
@@ -50403,6 +50463,84 @@
         "tag": {}
     },
     {
+        "id": "1835,2,27",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "n",
+            "other": [
+                {
+                    "link": [
+                        "https://awhilesince.tumblr.com/post/644290192948248576/friday-27-february-1835"
+                    ],
+                    "credit": "Kerstin H (@A_While_Since)"
+                },
+                {
+                    "credit": "Frankie",
+                    "link": [
+                        "https://whatdoesshedotothem.tumblr.com/post/644278246176882688/friday-27-february-1835-sh7mle170171"
+                    ]
+                }
+            ]
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,2,28",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "n",
+            "other": [
+                {
+                    "link": [
+                        "https://awhilesince.tumblr.com/post/644389342113071104/saturday-28-february-1835"
+                    ],
+                    "credit": "Kerstin H (@A_While_Since)"
+                },
+                {
+                    "credit": "Frankie",
+                    "link": [
+                        "https://whatdoesshedotothem.tumblr.com/post/644370148183195648/saturday-28-february-1835-sh7mle170172"
+                    ]
+                }
+            ]
+        },
+        "tag": {}
+    },
+    {
+        "id": "1835,3,1",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "n",
+            "other": [
+                {
+                    "link": [
+                        "https://awhilesince.tumblr.com/post/644473816156979200/sunday-1-march-1835"
+                    ],
+                    "credit": "Kerstin H (@A_While_Since)"
+                },
+                {
+                    "credit": "Frankie",
+                    "link": [
+                        "https://whatdoesshedotothem.tumblr.com/post/644442715150516224/sunday-1-march-1835-sh7mle170173"
+                    ]
+                }
+            ]
+        },
+        "tag": {}
+    },
+    {
         "id": "1835,3,22",
         "wyasLink": {
             "journal": [],
@@ -51955,6 +52093,66 @@
                 {
                     "link": [
                         "https://verycivil.blogspot.com/2021/02/saturday-16-july-1836.html"
+                    ],
+                    "credit": "David Hughes (@ParkieBath)"
+                }
+            ]
+        },
+        "tag": {}
+    },
+    {
+        "id": "1836,7,17",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "n",
+            "other": [
+                {
+                    "link": [
+                        "https://verycivil.blogspot.com/2021/02/sunday-17-july-1836.html"
+                    ],
+                    "credit": "David Hughes (@ParkieBath)"
+                }
+            ]
+        },
+        "tag": {}
+    },
+    {
+        "id": "1836,7,18",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "n",
+            "other": [
+                {
+                    "link": [
+                        "https://verycivil.blogspot.com/2021/02/monday-18-july-1836.html"
+                    ],
+                    "credit": "David Hughes (@ParkieBath)"
+                }
+            ]
+        },
+        "tag": {}
+    },
+    {
+        "id": "1836,7,19",
+        "wyasLink": {
+            "journal": [],
+            "journal_index": [],
+            "travel_note": []
+        },
+        "Tr": {
+            "wyas": "n",
+            "other": [
+                {
+                    "link": [
+                        "https://verycivil.blogspot.com/2021/03/tuesday-19-july-1836.html"
                     ],
                     "credit": "David Hughes (@ParkieBath)"
                 }
