@@ -114,7 +114,7 @@
 .calendar .months-container .month-container {
   float: left;
   text-align: center;
-  height: 200px;
+  height: 220px;
   padding: 0;
 }
 .calendar .months-container .month-container.month-2 {
@@ -167,7 +167,7 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  padding: 4px 5px;
+  padding: 3px 4px;
 }
 .calendar table.month td.old,
 .calendar table.month td.new,
@@ -178,7 +178,7 @@
 }
 .calendar table.month td.disabled,
 .calendar table.month td.disabled:hover {
-  color: #dddddd;
+  color: #CFCFCF;
 }
 .calendar table.month td.disabled .day-content:hover,
 .calendar table.month td.disabled:hover .day-content:hover {
@@ -282,7 +282,7 @@
   background-color: transparent;
 }
 table.month td.day .day-content:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 @-webkit-keyframes sk-bouncedelay {
