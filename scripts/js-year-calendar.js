@@ -45,7 +45,11 @@
    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    * See the License for the specific language governing permissions and
    * limitations under the License.
+   * ========================================================= 
+   * Modified by JY Jiang
    * ========================================================= */
+
+
   // NodeList forEach() polyfill
   if (typeof NodeList !== "undefined" && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = function (callback, thisArg) {
@@ -331,7 +335,7 @@
 
         // for entrys that already have transcripts, switch it to gray
         for (var i = 0; i < this._dataSource.length; i++){
-          if (this._dataSource[i].Tr.wyas==="y"|this._dataSource[i].Tr.other[0].link.length>0){
+          if (this._dataSource[i].Tr.wyas==="y"|this._dataSource[i].Tr[0].link.length>0){
             this._dataSource[i].color = "#DCDCDC";
           }else{
             this._dataSource[i].color = "#FFFFFF";
@@ -1203,6 +1207,10 @@
           return true;
         }
 
+        if (this._dataSource.findIndex(item=>item.startDate.getTime()===date.getTime())===-1) {
+          return true;
+        }
+
         if (this.options.disabledWeekDays.length > 0) {
           for (var d = 0; d < this.options.disabledWeekDays.length; d++) {
             if (date.getDay() == this.options.disabledWeekDays[d]) {
@@ -1848,7 +1856,7 @@
           * Gets the language used for calendar rendering.
           */
 
-    }, {
+    },  {
       key: "getLanguage",
       value: function getLanguage() {
         return this.options.language;
