@@ -5,8 +5,7 @@ var calendar = new Calendar('#calendar', {
     maxDate: new Date(1840,7,13),
     dataSource:  function(){
         // Load data from GitHub  "https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/data.json"
-        //https://raw.githubusercontent.com/dwRiverSmith/test/main/data+ref.json
-        return fetch("https://raw.githubusercontent.com/dwRiverSmith/test/main/data+ref.json")
+        return fetch("https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/data.json")
       .then(result => result.json())
       .then(result => unpackEntry(result));
   },
