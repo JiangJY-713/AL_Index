@@ -58,8 +58,8 @@ var calendar = new Calendar('#calendar', {
         $(e.element).popover('hide');
     },
     customDataSourceRenderer: function(elt, currentDate, events){
-        // blank journal page: #CFCFCF  travel notes: #FF8247/#EE7942  #00CD00/#00CD66  index:black  journal(link):#007bff  #0000CD
-        colorScheme = ["#E8E8E8","#00CD66","black","#0000CD","#CFCFCF"];
+        // blank journal page: #CFCFCF  travel notes:#00CD00/#00CD66  index:black  AW's journal:#EE82EE
+        colorScheme = ["#E8E8E8","#00CD66","black","#0000CD","#CFCFCF", "#EE82EE"];
         var parent = elt.parentElement;
         if (events.length===0){
             elt.style.color = colorScheme[0]
@@ -84,12 +84,23 @@ var calendar = new Calendar('#calendar', {
             //travel notes
             if (events[i].wyasLink.findIndex(item=>item.type==="travel notes")!==-1) {
                 if (events[i].Tr.findIndex(item=>item.type==="travel notes")===-1&
-                    events[i].wyasLink.findIndex(item=>item.type==="journal"&item.tr==="y")===-1) {
+                    events[i].wyasLink.findIndex(item=>item.type==="travel notes"&item.tr==="y")===-1) {
                     parent.style.outline = "2px dotted "+colorScheme[1]
                     parent.style.outlineOffset = "-4px"
                 }else{
                     parent.style.outline = "2px solid "+colorScheme[1]
                     parent.style.outlineOffset = "-4px"
+                }
+            }
+            //AW's journal
+            if (events[i].wyasLink.findIndex(item=>item.type==="AW's journal")!==-1) {
+                if (events[i].Tr.findIndex(item=>item.type==="AW's journal")===-1&
+                    events[i].wyasLink.findIndex(item=>item.type==="AW's journal"&item.tr==="y")===-1) {
+                    elt.style.border = "2px dotted "+colorScheme[5]
+                    elt.style.borderRadius = "50%"
+                }else{
+                    elt.style.border = "2px solid "+colorScheme[5]
+                    elt.style.borderRadius = "50%"
                 }
             }
         }
@@ -390,7 +401,8 @@ function addWYAS(file,callback){
         dataSource = calendar._dataSource;
         oSheet = workbook.Sheets["journal"];
         oSheetTN = workbook.Sheets["travel notes"];
-        oSheet = oSheetTN;
+        oSheetAW = workbook.Sheets["AW's journal"];
+        oSheet = oSheetAW;
         for(i=2;typeof(oSheet["F"+i])!=="undefined";i++){
             console.log(i)
             if (i===1564) {
@@ -402,10 +414,12 @@ function addWYAS(file,callback){
                 if (dataSource[data_index].wyasLink[0].type==="") {
                     dataSource[data_index].wyasLink[0].type = oSheet["B"+i].v;
                     dataSource[data_index].wyasLink[0].link.push(oSheet["F"+i].v);
+                    dataSource[data_index].wyasLink[0].tr = "";
                 }else if(wyas_index===-1){
                     temp = new Object;
                     temp.type = oSheet["B"+i].v;
                     temp.link = [oSheet["F"+i].v];
+                    temp.tr = "";
                     dataSource[data_index].wyasLink.push(temp);
                 }else if(!dataSource[data_index].wyasLink[wyas_index].link.includes(oSheet["F"+i].v)){
                     dataSource[data_index].wyasLink[wyas_index].link.push(oSheet["F"+i].v);
@@ -436,6 +450,7 @@ function updateTrWYAS(vol_type,vol_index){
     url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/"
     if (vol_type === "journal") {url_prefix += "6/"}
         else if (type === "travel notes") {url_prefix += "10"}
+            else if(type === "AW's journal"){url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=WYAS4971/7/1/5"}
     url_prefix += vol_index+"/"
     for (i = 0; i<dataSource.length; i++){
         for (j in dataSource[i].wyasLink){
