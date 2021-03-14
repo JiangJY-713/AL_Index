@@ -1,0 +1,71 @@
+/* spacing */
+
+table {
+  table-layout: fixed;
+  width: 750px;
+  border-collapse: collapse;
+  border: 2px solid black;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.index thead th:nth-child(1) {
+  width: 13%;
+  min-width: 
+}
+.index thead th:nth-child(2) {
+  width: 74%;
+}
+.index thead th:nth-child(3) {
+  width: 12%;
+}
+
+.miscellaneous thead th:nth-child(1) {
+  width: 21%;
+  min-width: 
+}
+.miscellaneous thead th:nth-child(2) {
+  width: 12%;
+}
+.miscellaneous thead th:nth-child(3) {
+  width: 53%;
+}
+.miscellaneous thead th:nth-child(4) {
+  width: 14%;
+}
+
+th, td {
+  padding-left: 10px;
+  font-size: 15px;
+  border-bottom:1px solid #dedede;/* 表格横线 */
+}
+
+th {
+  border-bottom:1px solid #3F3F3F;/* 表格横线 */
+}
+
+caption {
+	caption-side: top;
+	text-align: left;
+	padding: 3px;
+	color: black;
+}
+
+.outer{
+    color: white;
+    background-color: #3F3F3F;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 220px;   
+    overflow-x: hidden;
+    overflow-y: scroll;
+}.inner{
+    height: 100%;    
+    width: 215px;
+    /*overflow-y: scroll;*/
+    padding-top: 20px;
+    padding-left: 20px;
+}
+ 
