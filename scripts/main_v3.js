@@ -299,7 +299,7 @@ function DispRef(entry){
         if(Number(j)===entry.wyasLink[i].link.length-1){
             content += '<a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a>'
         }else{
-            content += '<a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a>'+'|'
+            content += '<a href='+entry.wyasLink[i].link[j]+' target="_blank"> p'+(Number(j)+1)+'</a>'+' |'
         }       
     }
     content += '); '
@@ -310,7 +310,7 @@ function DispRef(entry){
     alcb_index = entry.Tr.map((x, idx) => [x, idx]).filter(x => x[0].type===entry.wyasLink[i].type).map(x => x[1])
     if (alcb_index!==-1) {
         for(var j in alcb_index){            
-            if (entry.Tr[alcb_index[j]].link.lenth>1) {
+            if (entry.Tr[alcb_index[j]].link.length>1) {
                 contentTr_sub += 'By '+ entry.Tr[alcb_index[j]].credit+' ( ';
                 for(var k in entry.Tr[alcb_index[j]].link){
                     contentTr_sub += '<a href='+entry.Tr[alcb_index[j]].link[k]+' target="_blank">p'+ (Number(k)+1)+'</a>' +' | ' 
