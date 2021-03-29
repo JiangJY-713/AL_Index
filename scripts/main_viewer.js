@@ -191,7 +191,7 @@ document.querySelector('#TrProgress').addEventListener('click', function() {
                     progress.appendChild(label);
                 }
             }
-            let currentDiv = document.getElementById("feature");
+            let currentDiv = document.getElementById("legend");
             document.body.insertBefore(progress, currentDiv);                
         }
         else{
@@ -461,3 +461,7 @@ function updateTrWYAS(vol_type,vol_index){
     }
     calendar.setDataSource(dataSource)
 }
+
+
+
+
