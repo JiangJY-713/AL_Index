@@ -159,6 +159,24 @@ $('#save-event').click(function() {
         saveEvent();
 });
 
+//update log 
+$(function(){
+    commit_url = "https://api.github.com/repos/JiangJY-713/AL_Index/commits";
+    fetch(commit_url)
+          .then(result => result.json())
+          .then(result => result[0].commit.committer.date.slice(0,10))
+          .then(function(result){
+                // log_link = document.createElement("a")
+                // log_link.target = "_blank"
+                // log_link.href = commit_url
+                // log_link.innerText = "Update log <sub>(last: " + result + ")</sub>"
+                log_btn = document.getElementById("update_log")
+                // log_btn.appendChild(log_link)
+                log_btn.innerHTML = "Update log <sub>(last: " + result + ")</sub>"
+          }
+            );
+});
+
 
 document.querySelector('#update-current-year').addEventListener('click', function() {
     calendar.setYear(document.querySelector('#current-year').value);
@@ -461,6 +479,11 @@ function updateTrWYAS(vol_type,vol_index){
     }
     calendar.setDataSource(dataSource)
 }
+
+
+
+
+
 
 
 

@@ -29,13 +29,18 @@
 </head>
 
 <body>
-<div id="feature">
-    <input type="text" onkeydown="jump('update-current-year')" id="current-year" style="margin: 10px; width: 100px"  placeholder="Year">
-    <button id="update-current-year" type="button" style="margin-right: 10px">Jump to</button>
-    <button id="TrProgress" type="button" style="text-align:right;margin-left: 10px;margin-right: 10px">Show coverage</button>
-    <a href="https://github.com/JiangJY-713/AL_Index" target="_blank">Read me (updated: 2021.3.6)</a>
+<ul class="fixed-btn" id="feature">
+    <li>
+        <input type="text" onkeydown="jump('update-current-year')" id="current-year" style="margin: 10px; width: 100px"  placeholder="Year">
+        <button id="update-current-year" type="button" style="margin-right: 10px;">Jump to</button>
+        <button id="TrProgress" type="button" style="margin-left: 10px;margin-right: 10px;">Show coverage</button>
+    </li>
+
+    <li><a href="https://github.com/JiangJY-713/AL_Index" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Read me</a></li>
+    <li><a id="update_log" href="https://github.com/JiangJY-713/AL_Index/commits/main" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Update log</a></li>
 <!--     <a href="https://jiangjy-713.github.io/AL_Index/journal-structure.html" style="margin-left: 50px">AL Journal Structure</a> -->
-    
+  
+
     <div id="maintainence" style="float: right;margin-right: 10px">
         <input type="button" id="loadFile" style="margin: 10px;" value="maintain Trs" onclick="document.getElementById('maintain Trs').click();" />
         <input type="file" style="display:none;" id="maintain Trs" onchange="dailyMaintain(this.files[0])"/>
@@ -43,12 +48,13 @@
         <input type="button" id="loadFile" style="margin: 10px;" value="maintain Refs" onclick="document.getElementById('maintain Refs').click();" />
         <input type="file" style="display:none;" id="maintain Refs" onchange="addWYAS(this.files[0])"/>  
     </div>
-</div>
+</ul>
+
+<div id="placeholder" style="height:60px"></div>
+
 <div id="legend">
     <img src="../img/legend.jpg">
 </div>
-
-
 
 
 <div id="calendar"></div>
