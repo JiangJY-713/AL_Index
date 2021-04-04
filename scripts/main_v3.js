@@ -231,21 +231,27 @@ function addEvent(dataSource,event){
         entry_exist = 0;
         for (var i in dataSource) {
             if (dataSource[i].startDate.getTime() === event.startDate.getTime()) {
-                credit_exist = 0;
-                for(var j in dataSource[i].Tr){
-                    if (dataSource[i].Tr[j].link.includes(event.location)&dataSource[i].Tr[j].type===event.type){
-                        credit_exist = 1;
-                    }else if(dataSource[i].Tr[j].credit===event.name&dataSource[i].Tr[j].type===event.type){
-                        dataSource[i].Tr[j].link.push(event.location);
-                        credit_exist = 1;
+                if (dataSource[i].Tr.length === 1 & dataSource[i].Tr[0].credit === ""){
+                    dataSource[i].Tr[0].credit = event.name;
+                    dataSource[i].Tr[0].link = [event.location];
+                    dataSource[i].Tr[0].type = event.type;
+                }else{
+                    credit_exist = 0;
+                    for(var j in dataSource[i].Tr){
+                        if (dataSource[i].Tr[j].link.includes(event.location)&dataSource[i].Tr[j].type===event.type){
+                            credit_exist = 1;
+                        }else if(dataSource[i].Tr[j].credit===event.name&dataSource[i].Tr[j].type===event.type){
+                            dataSource[i].Tr[j].link.push(event.location);
+                            credit_exist = 1;
+                        }
                     }
-                }
-                if (credit_exist === 0){
-                    temp = new Object;
-                    temp.credit = event.name;
-                    temp.link = [event.location];
-                    temp.type = event.type;
-                    dataSource[i].Tr.push(temp);
+                    if (credit_exist === 0){
+                        temp = new Object;
+                        temp.credit = event.name;
+                        temp.link = [event.location];
+                        temp.type = event.type;
+                        dataSource[i].Tr.push(temp);
+                    }
                 }
             entry_exist = 1;
             }
@@ -317,7 +323,7 @@ function DispRef(entry){
         if(Number(j)===entry.wyasLink[i].link.length-1){
             content += '<a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a>'
         }else{
-            content += '<a href='+entry.wyasLink[i].link[j]+' target="_blank"> p'+(Number(j)+1)+'</a>'+' |'
+            content += '<a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a>'+'|'
         }       
     }
     content += '); '

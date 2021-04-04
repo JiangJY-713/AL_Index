@@ -58,7 +58,7 @@ var calendar = new Calendar('#calendar', {
         $(e.element).popover('hide');
     },
     customDataSourceRenderer: function(elt, currentDate, events){
-        // blank journal page: #CFCFCF  travel notes: #00CD00/#00CD66  index:black  AW's journal:#EE82EE
+        // blank journal page: #CFCFCF  travel notes:#00CD00/#00CD66  index:black  AW's journal:#EE82EE
         colorScheme = ["#E8E8E8","#00CD66","black","#0000CD","#CFCFCF", "#EE82EE"];
         var parent = elt.parentElement;
         if (events.length===0){
@@ -84,7 +84,7 @@ var calendar = new Calendar('#calendar', {
             //travel notes
             if (events[i].wyasLink.findIndex(item=>item.type==="travel notes")!==-1) {
                 if (events[i].Tr.findIndex(item=>item.type==="travel notes")===-1&
-                    events[i].wyasLink.findIndex(item=>item.type==="journal"&item.tr==="y")===-1) {
+                    events[i].wyasLink.findIndex(item=>item.type==="travel notes"&item.tr==="y")===-1) {
                     parent.style.outline = "2px dotted "+colorScheme[1]
                     parent.style.outlineOffset = "-4px"
                 }else{
@@ -231,21 +231,27 @@ function addEvent(dataSource,event){
         entry_exist = 0;
         for (var i in dataSource) {
             if (dataSource[i].startDate.getTime() === event.startDate.getTime()) {
-                credit_exist = 0;
-                for(var j in dataSource[i].Tr){
-                    if (dataSource[i].Tr[j].link.includes(event.location)&dataSource[i].Tr[j].type===event.type){
-                        credit_exist = 1;
-                    }else if(dataSource[i].Tr[j].credit===event.name&dataSource[i].Tr[j].type===event.type){
-                        dataSource[i].Tr[j].link.push(event.location);
-                        credit_exist = 1;
+                if (dataSource[i].Tr.length === 1 & dataSource[i].Tr[0].credit === ""){
+                    dataSource[i].Tr[0].credit = event.name;
+                    dataSource[i].Tr[0].link = [event.location];
+                    dataSource[i].Tr[0].type = event.type;
+                }else{
+                    credit_exist = 0;
+                    for(var j in dataSource[i].Tr){
+                        if (dataSource[i].Tr[j].link.includes(event.location)&dataSource[i].Tr[j].type===event.type){
+                            credit_exist = 1;
+                        }else if(dataSource[i].Tr[j].credit===event.name&dataSource[i].Tr[j].type===event.type){
+                            dataSource[i].Tr[j].link.push(event.location);
+                            credit_exist = 1;
+                        }
                     }
-                }
-                if (credit_exist === 0){
-                    temp = new Object;
-                    temp.credit = event.name;
-                    temp.link = [event.location];
-                    temp.type = event.type;
-                    dataSource[i].Tr.push(temp);
+                    if (credit_exist === 0){
+                        temp = new Object;
+                        temp.credit = event.name;
+                        temp.link = [event.location];
+                        temp.type = event.type;
+                        dataSource[i].Tr.push(temp);
+                    }
                 }
             entry_exist = 1;
             }
@@ -479,12 +485,3 @@ function updateTrWYAS(vol_type,vol_index){
     }
     calendar.setDataSource(dataSource)
 }
-
-
-
-
-
-
-
-
-
