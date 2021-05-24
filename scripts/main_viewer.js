@@ -473,8 +473,8 @@ function updateTrWYAS(vol_type,vol_index){
     dataSource = calendar._dataSource
     url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/"
     if (vol_type === "journal") {url_prefix += "6/"}
-        else if (type === "travel notes") {url_prefix += "10"}
-            else if(type === "AW's journal"){url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=WYAS4971/7/1/5"}
+        else if (vol_type === "travel notes") {url_prefix += "10"}
+            else if(vol_type === "AW's journal"){url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=WYAS4971/7/1/5/"}
     url_prefix += vol_index+"/"
     for (i = 0; i<dataSource.length; i++){
         for (j in dataSource[i].wyasLink){
