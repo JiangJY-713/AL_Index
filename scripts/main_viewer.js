@@ -276,7 +276,7 @@ function unpackEntry(entry_info){
     endDate:id2Date(x.id),
     wyasLink: x.wyasLink,
     Tr: x.Tr,
-    tag: x.tag
+    // tag: x.tag
    }))
 }
 
@@ -293,7 +293,7 @@ function packEntry(dataSource){
         id: x.startDate.getFullYear()+','+(Number(x.startDate.getMonth())+1)+','+x.startDate.getDate(),
         wyasLink: x.wyasLink,
         Tr: x.Tr,
-        tag: x.tag
+        // tag: x.tag
     }))
 }
 
@@ -308,7 +308,7 @@ function EntryObj(){
     this.Tr[0].link = [];
     this.Tr[0].credit = "";
     this.Tr[0].type = "";  //"journal"/"travel notes"/"journal index"/...
-    this.tag = {};
+    // this.tag = {};
     
 }
 

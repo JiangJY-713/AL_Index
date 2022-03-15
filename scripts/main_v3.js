@@ -276,7 +276,7 @@ function unpackEntry(entry_info){
     endDate:id2Date(x.id),
     wyasLink: x.wyasLink,
     Tr: x.Tr,
-    tag: x.tag
+    // tag: x.tag
    }))
 }
 
@@ -293,7 +293,7 @@ function packEntry(dataSource){
         id: x.startDate.getFullYear()+','+(Number(x.startDate.getMonth())+1)+','+x.startDate.getDate(),
         wyasLink: x.wyasLink,
         Tr: x.Tr,
-        tag: x.tag
+        // tag: x.tag
     }))
 }
 
@@ -302,34 +302,52 @@ function EntryObj(){
     this.endDate = "";
     this.wyasLink = [{}];
     this.wyasLink[0].link = [];
-    this.wyasLink[0].type = ""; //"journal"/"travel notes"/"journal index"/...
+    this.wyasLink[0].type = ""; //"journal"/"travel notes"/"journal index"/"travel accounts"/"itinerary"/"AW's journal"
     this.wyasLink[0].tr = ""; // "y"/"n", wyas transcripts availability
     this.Tr = [{}];
     this.Tr[0].link = [];
     this.Tr[0].credit = "";
     this.Tr[0].type = "";  //"journal"/"travel notes"/"journal index"/...
-    this.tag = {};
+    // this.tag = {};
     
+}
+
+function TypeFormat(type){
+    // blank journal page: #CFCFCF  travel notes:#00CD00/#00CD66  index:black  AW's journal:#EE82EE
+    colorScheme = ["#E8E8E8","#00CD66","black","#0000CD","#CFCFCF", "#EE82EE"];
+    if (type === "journal"){
+        typeWformat = type;
+    }else if (type === "journal index"|type === "travel accounts"|type === "itinerary") {
+        typeWformat = '<u>'+type+'</u>';
+    }else if (type === "travel notes") {
+        typeWformat = '<font color="'+colorScheme[1]+'">'+type+'</font>'
+    }else if (type === "AW's journal") {
+        typeWformat = '<font color="'+colorScheme[5]+'">'+type+'</font>'
+    }
+    return typeWformat;
+
 }
 
 function DispRef(entry){
    // content = '<div class="event-tooltip-content"><div>WYAS Link: '
    // content = '<div class="event-tooltip-content"><details open><summary>WYAS Link</summary><div>'
-   content = '<details open class="details-black"><summary>WYAS Link</summary><div>'
+   content = '<details open class="details-black"><summary><b>WYAS Link</b></summary><div>'
    contentTr = [];
    for (var i in entry.wyasLink){
-    content += '<i>'+entry.wyasLink[i].type+'</i> (';
+    // content += '<i>'+entry.wyasLink[i].type+'</i> (';
+    content += TypeFormat(entry.wyasLink[i].type)+' (';
     for (var j in entry.wyasLink[i].link){
         if(Number(j)===entry.wyasLink[i].link.length-1){
-            content += '<a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a>'
+            content += '<i><a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a></i>'
         }else{
-            content += '<a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a>'+'|'
+            content += '<i><a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a></i>'+'|'
         }       
     }
     content += '); '
-    contentTr_sub = ''
+
+    contentTr_sub = '<i>'
     if (entry.wyasLink[i].tr==="y") {
-        contentTr_sub = 'WYAS; '
+        contentTr_sub = '<i>WYAS; '
     }
     alcb_index = entry.Tr.map((x, idx) => [x, idx]).filter(x => x[0].type===entry.wyasLink[i].type).map(x => x[1])
     if (alcb_index!==-1) {
@@ -345,13 +363,14 @@ function DispRef(entry){
             }
         }
     }
-    if (contentTr_sub!=='') {
-        contentTr.push('<i>'+entry.wyasLink[i].type+'</i>: '+contentTr_sub+'  ')
+    if (contentTr_sub!=='<i>') {
+        // contentTr.push('<i>'+entry.wyasLink[i].type+'</i>: '+contentTr_sub+'  ')
+        contentTr.push(TypeFormat(entry.wyasLink[i].type)+': '+contentTr_sub+'</i>  ')
     }
    }
     content += '</div></details>'
     if (contentTr.length>0){
-        content += '<details open class="details-black"><summary>Transcripts</summary><div>'
+        content += '<details open class="details-black"><summary><b>Transcripts</b></summary><div>'
         for(var i in contentTr){
             content += contentTr[i]
         }
