@@ -1,7 +1,7 @@
 var calendar = new Calendar('#calendar', {
     startYear: 1806,
     style: 'custom',
-    minDate: new Date(1800,4, 21),
+    minDate: new Date(1800,4,21),
     maxDate: new Date(1840,7,13),
     dataSource:  function(){
         // Load data from GitHub  "https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/data.json"
@@ -290,7 +290,9 @@ function id2Date(id){
 
 function packEntry(dataSource){
     return dataSource.map(x=>({
-        id: x.startDate.getFullYear()+','+(Number(x.startDate.getMonth())+1)+','+x.startDate.getDate(),
+        id: x.startDate.getFullYear()+','+
+            ('0'+(Number(x.startDate.getMonth())+1)).slice(-2)+','+
+            ('0'+x.startDate.getDate()).slice(-2),
         wyasLink: x.wyasLink,
         Tr: x.Tr,
         // tag: x.tag
