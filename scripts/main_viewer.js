@@ -317,7 +317,7 @@ function EntryObj(){
 function DispRef(entry){
    // content = '<div class="event-tooltip-content"><div>WYAS Link: '
    // content = '<div class="event-tooltip-content"><details open><summary>WYAS Link</summary><div>'
-   content = '<details open class="details-black"><summary>WYAS Link</summary><div>'
+   content = '<details open class="details-black"><summary><b>WYAS Link</b></summary><div>'
    contentTr = [];
    for (var i in entry.wyasLink){
     content += '<i>'+entry.wyasLink[i].type+'</i> (';
@@ -353,7 +353,7 @@ function DispRef(entry){
    }
     content += '</div></details>'
     if (contentTr.length>0){
-        content += '<details open class="details-black"><summary>Transcripts</summary><div>'
+        content += '<details open class="details-black"><summary><b>Transcripts</b></summary><div>'
         for(var i in contentTr){
             content += contentTr[i]
         }
