@@ -5,8 +5,13 @@ function searchSubmit(form,db){
   query.keyword = formData.get('keyword');
   query.entry_type = formData.getAll('entry_type').map(x=>type_options[x]);
   query.source = formData.getAll('source');
+  query.search_mode = formData.get('search-mode');
   var result_wyas = [];  var result_alcb =[];
   var date_list_wyas = []; var date_list_alcb = [];
+
+  if(query.search_mode==='like'){
+      var reg = wc2RegExp(query.keyword);
+  }
 
   // empty query, reset
   if(query.keyword===''){
@@ -24,10 +29,25 @@ function searchSubmit(form,db){
   document.getElementById('wrapper').innerText = "Searching...";
   // query in both tables
   if (query.source.indexOf("WYAS")!==-1){
-    result_wyas = db.exec(`select highlight(wyas_fts, 0, '<span class="highlight">', '</span>'),link,date,type,part from wyas_fts where text match ?`,[query.keyword]);
+    if(query.search_mode==='match'){
+      try{
+        result_wyas = db.exec(`select highlight(wyas_fts, 0, '<span class="highlight">', '</span>'),link,date,type,part from wyas_fts where text match ?`,[query.keyword]);
+      }catch(err){
+        document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
+      }
+    }else if(query.search_mode==='like'){
+      try{
+        result_wyas = db.exec(`select text,link,date,type,part from wyas_fts where text like ?`,[query.keyword]);
+      }catch(err){
+        document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
+      }      
+    }
     if (result_wyas.length>0) {
         result_wyas = result_wyas[0];
         result_wyas.values.map(x=>{
+          if(query.search_mode==='like'){
+            x[0] = likeHL(x[0],reg,['<span class="highlight">','</span>'])
+          }
           x[0] = snippet(x[0])
         });
         date_list_wyas = result_wyas.values.map(x=>x[2]);
@@ -37,10 +57,27 @@ function searchSubmit(form,db){
     }
   }
   if (query.source.indexOf("ALCB blogs")!==-1){
-    result_alcb = db.exec(`select highlight(alcb_fts, 0, '<span class="highlight">', '</span>'),credit,link,date,type,part from alcb_fts where text match ?`,[query.keyword]);
+    if(query.search_mode==='match'){
+      try{
+        result_alcb = db.exec(`select highlight(alcb_fts, 0, '<span class="highlight">', '</span>'),credit,link,date,type,part from alcb_fts where text match ?`,[query.keyword]);
+      }catch(err){
+        document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
+      }  
+    }else if(query.search_mode==='like'){
+      try{
+        result_alcb = db.exec(`select text,credit,link,date,type,part from alcb_fts where text like ?`,[query.keyword]);
+      }catch(err){
+        document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
+      }      
+    }
     if (result_alcb.length>0) {
         result_alcb = result_alcb[0]; 
-        result_alcb.values.map(x=>{x[0] = snippet(x[0])});
+        result_alcb.values.map(x=>{
+          if(query.search_mode==='like'){
+            x[0] = likeHL(x[0],reg,['<span class="highlight">','</span>'])
+          }
+          x[0] = snippet(x[0])
+        });
         date_list_alcb = result_alcb.values.map(x=>x[3]);
         date_list_alcb = date_list_alcb.filter(function(item, index, arr) {
             return arr.indexOf(item, 0) === index;});
@@ -221,6 +258,61 @@ function yearHitsHeat(merged_result){
     })
 }
 
+function wc2RegExp(query){
+  query = escapeRegExp(query)
+ var index_wc = [];
+  var reg ='';
+  for (var i = 0;i<query.length;i++){
+    if (query[i]==='%'|query[i]==='_'){
+      index_wc.push({
+        idx: i,
+        wc: query[i]
+      })
+    }
+  }
+
+  if (index_wc.length===0){
+    reg = '^'+query+'$'
+  }else{
+    if(index_wc[0].idx>0){reg += '^'}
+      else if(index_wc[0].wc==='_'){reg += '^[\\s\\S]{1}'}
+    reg += query.slice(0,index_wc[0].idx)
+    for (var i = 1; i<index_wc.length;i++){
+      reg += query.slice(index_wc[i-1].idx+1,index_wc[i].idx)
+      if(index_wc[i].wc==='_'){
+        for (var j = i+1; j<index_wc.length; j++){
+          if(index_wc[j].wc!=='_'){
+            break;
+          }
+        }
+        reg += '[\\s\\S]{'+Number(j-i).toString()+'}'
+        i = j-1;
+      }
+      else if (index_wc[i].wc==='%'&i<index_wc.length-1){
+        reg += '[\\s\\S]*'
+      }
+    }
+    reg += query.slice(index_wc[index_wc.length-1].idx+1);
+    if(index_wc[index_wc.length-1].idx!==query.length-1){
+      reg += '$'
+    }
+  }
+
+  reg = new RegExp(reg,'gi')
+  return reg
+}
+
+function likeHL(text,reg,hl_mark) {
+  var text_hl = text.replace(reg,function(word){
+    return hl_mark[0]+word+hl_mark[1]
+  })
+  return text_hl;
+}
+
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function snippet(text,snippet_size){
   var snippet_size = 35;
   var text_list = text.split(' ');
@@ -238,7 +330,7 @@ function snippet(text,snippet_size){
   }
   for(var i = 0; i<indices_x.length; i++){
     if (i!==0){
-      temp = text.slice(indices_y[i-1]+7,indices_y[i]+7);
+      temp = text.slice(indices_y[i-1]+hl_mark[1].length,indices_y[i]+hl_mark[1].length);
       temp_split = temp.split(' ');
       if(temp_split.length<snippet_size){
         text_snippet += temp;
@@ -247,16 +339,17 @@ function snippet(text,snippet_size){
                         +'<b style="color: crimson;"> (...) </b>'+temp_split.slice(temp_split.length-parseInt(snippet_size/2)).join(' ')
       }
     }else{
-      temp = text.slice(0,indices_y[i]+7);
+      temp = text.slice(0,indices_y[i]+hl_mark[1].length);
       temp_split = temp.split(' ');
-      if(temp_split.length<snippet_size){
+      var word_length = text.slice(indices_x[i],indices_y[i]+hl_mark[1].length).split(' ').length;
+      if(temp_split.length-word_length<snippet_size){
         text_snippet += temp;
       }else{
-        text_snippet += '<b style="color: crimson;"> (...) </b>'+temp_split.slice(temp_split.length-snippet_size).join(' ')
+        text_snippet += '<b style="color: crimson;"> (...) </b>'+temp_split.slice(temp_split.length-word_length-snippet_size).join(' ')
       }
     }
     if(i===indices_x.length-1){
-      temp = text.slice(indices_y[i]+7);
+      temp = text.slice(indices_y[i]+hl_mark[1].length);
       temp_split = temp.split(' ');
       if(temp_split.length<snippet_size){
         text_snippet += temp;
@@ -303,64 +396,6 @@ function ftsAbstract(merged_result,current_year){
     })
   })
 }
-
-// click the day and the fts-abstract will scroll to result of the day
-$.fn.extend({
-  abstractScroll (active, dataArt) {
-          var pageEqClass = {}
-          var navEqClass = {}
-          var pageList = []
-          var navElems = $(this).find('['+dataArt+']')
-            //
-            var thrFn  = function (fn, time, maxLog) {
-              var timeK = null
-                var oTime = new Date().getTime()
-                var execFn = function () {
-                    fn()
-                    oTime = new Date().getTime()
-                }
-                return function () {
-                var nTime = new Date().getTime()
-                    clearTimeout(timeK)
-                    if (nTime - oTime > maxLog) {
-                  execFn()
-                    } else {
-                  timeK = setTimeout(execFn, time)
-                    }
-                }
-            }
-          var fn = thrFn(function () {
-            let scrollTop = window.pageYOffset || window.document.documentElement.scrollTop
-            for (var k in pageEqClass) {
-              var elem = pageEqClass[k]
-              var offsetTop = elem.offset().top
-              var elemH = elem.outerHeight()
-              if (offsetTop - scrollTop <= 0 &&  offsetTop + elemH - scrollTop > 0) {
-                navEqClass[k].addClass(active)
-              } else {
-                navEqClass[k].removeClass(active)
-              }
-            }
-          }, 50, 200)
-          navElems.each(function () {
-            const $elem = $(this)
-            const className = $elem.attr(dataArt)
-            const elem = $('#' + className)
-            pageList.push(elem)
-            pageEqClass[className] = elem
-            navEqClass[className] = $elem
-          })
-          $(window).on('scroll', fn)
-          navElems.on('click', function () {
-            var className = $(this).attr(dataArt)
-            $(window).scrollTop(pageEqClass[className].offset().top)
-          })
-          fn()
-            return this
-        }
-
-})
-$('.day').abstractScroll('active', 'data-socrll-id')
 
 function distinct(a, b) {
     let arr = a.concat(b)

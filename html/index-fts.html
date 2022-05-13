@@ -58,6 +58,10 @@
 					<input type="search" name="keyword" class="search-field" id ="search-field"
                 placeholder="Search" onclick="openNav()">
 				</label>
+				<select name="search-mode" id="search-mode" style="display: none;">
+				    <option value="match">full text search</option>
+				    <option value="like">pattern match</option>
+				</select>
 				<input type="submit" class="search-submit" value="Search">
 
 				<div id="search-options" style="display: none">
@@ -84,18 +88,18 @@
 						    <label for="source_1">WYAS</label>
 						    <input type="checkbox" checked="true" id="source_2" name="source" value="ALCB blogs">
 						    <label for="source_2">ALCB blogs</label><br>
+
 						  </p>
 					</div>
 					<div id="search-options-btn" style="margin-right:5px;float: right; cursor: pointer; color: blue;" onclick="SearchOpt()">Search Options</div>
 					<!-- <div id="search-tips-btn" style="float: left; cursor: pointer; color: blue;" onclick="window.open('https://github.com/JiangJY-713/AL_Index#full-text-search')">Search Tips</div> -->
-					<div id="search-tips-btn" style="float: left; cursor: pointer; color: blue;" onclick="window.open('https://github.com/JiangJY-713/AL_Index/html#full-text-search')">Search Tips</div>
+					<div id="search-tips-btn" style="float: left; cursor: pointer; color: blue;" onclick="window.open('https://github.com/JiangJY-713/AL_Index/tree/main/html#full-text-search')">Search Tips</div>
 				</div>
 
 			</form>
 		<!-- </div> -->
 			<div id="search-result" style="margin-top: 60px">
 				<div id="wrapper" style="position: absolute;">
-					Hello world
 				</div>
 				<div>
 				<div id="fts-abstract">
