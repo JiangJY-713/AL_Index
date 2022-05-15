@@ -10,7 +10,7 @@ const cheerio =  require('cheerio');
 const httpsProxyAgent = require('https-proxy-agent');
 const https = require('https');
 const rootCas = require('ssl-root-cas').create();
-rootCas.addFile('E:/AL/Project/AL_index/scripts/crawler/node_modules/ssl-root-cas/pems/GeoTrust TLS DV RSA Mixed SHA256 2020 CA-1.pem')
+rootCas.addFile('E:/AL/Project/AL_index/scripts/node_modules/ssl-root-cas/pems/GeoTrust TLS DV RSA Mixed SHA256 2020 CA-1.pem')
 const httpAgent = new httpsProxyAgent("http://127.0.0.1:7890");
 const httpAgent_temp = new https.Agent({ca: rootCas});
 httpAgent.options = httpAgent_temp.options;
@@ -145,7 +145,7 @@ async function insertALCB(db,data,start_line, end_line){
 // Regular ALCB Transcipts maintenance, reading from Excel file
 async function updateALCBdoc(db,mode){
     // var data = require('../../data/data+entry_id.json');
-    var sheets = xlsx.parse('../../data/Transcript Calendar.xlsx');
+    var sheets = xlsx.parse('../data/Transcript Calendar.xlsx');
     var oSheet = sheets.find(element=>element.name==='daily maintain').data; 
     oSheet = oSheet.filter(item=>typeof(item[0])!=="undefined" & typeof(item[1]) !=="undefined" & typeof(item[2]) !=="undefined" );
     for(var i=1; i<oSheet.length; i++){   
@@ -421,7 +421,7 @@ function cleanText(v,$){
     if (temp.includes("original diary pages:")|temp.includes("original page here:")|
     temp.includes("reference number:")|temp.includes("page references:")|
     temp.includes("wyas")|temp.includes("diary reference:")|temp.includes("diary page: ")|
-    temp.includes("you can see the original diary entry here:")){
+    temp.includes("you can see the original diary entry here:")|temp.includes("you can read the original diary entry here:")){
         return "";
     }else{
         var sub_text = $(v).text();

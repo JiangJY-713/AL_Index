@@ -28,66 +28,62 @@ function searchSubmit(form,db){
 
   document.getElementById('wrapper').innerText = "Searching...";
   // query in both tables
-  if (query.source.indexOf("WYAS")!==-1){
-    if(query.search_mode==='match'){
-      try{
-        result_wyas = db.exec(`select highlight(wyas_fts, 0, '<span class="highlight">', '</span>'),link,date,type,part from wyas_fts where text match ?`,[query.keyword]);
-      }catch(err){
-        document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
-      }
-    }else if(query.search_mode==='like'){
-      try{
-        result_wyas = db.exec(`select text,link,date,type,part from wyas_fts where text like ?`,[query.keyword]);
-      }catch(err){
-        document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
-      }      
+  if(query.search_mode==='match'){
+    try{
+      result_wyas = db.exec(`select highlight(wyas_fts, 0, '<span class="highlight">', '</span>'),link,date,type,part from wyas_fts where text match ?`,[query.keyword]);
+      result_alcb = db.exec(`select highlight(alcb_fts, 0, '<span class="highlight">', '</span>'),credit,link,date,type,part from alcb_fts where text match ?`,[query.keyword]);   
+    }catch(err){
+      document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
+      return;
     }
-    if (result_wyas.length>0) {
-        result_wyas = result_wyas[0];
-        result_wyas.values.map(x=>{
-          if(query.search_mode==='like'){
-            x[0] = likeHL(x[0],reg,['<span class="highlight">','</span>'])
-          }
-          x[0] = snippet(x[0])
-        });
-        date_list_wyas = result_wyas.values.map(x=>x[2]);
-        date_list_wyas = date_list_wyas.filter(function(item, index, arr) {
-            return arr.indexOf(item, 0) === index;});
-        document.querySelector('label[for=source_1]').innerText = 'WYAS ('+date_list_wyas.length+')';
-    }
+  }else if(query.search_mode==='like'){
+    try{
+      result_wyas = db.exec(`select text,link,date,type,part from wyas_fts where text like ?`,[query.keyword]);
+      result_alcb = db.exec(`select text,credit,link,date,type,part from alcb_fts where text like ?`,[query.keyword]);   
+    }catch(err){
+      document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
+      return;
+    }      
   }
-  if (query.source.indexOf("ALCB blogs")!==-1){
-    if(query.search_mode==='match'){
-      try{
-        result_alcb = db.exec(`select highlight(alcb_fts, 0, '<span class="highlight">', '</span>'),credit,link,date,type,part from alcb_fts where text match ?`,[query.keyword]);
-      }catch(err){
-        document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
-      }  
-    }else if(query.search_mode==='like'){
-      try{
-        result_alcb = db.exec(`select text,credit,link,date,type,part from alcb_fts where text like ?`,[query.keyword]);
-      }catch(err){
-        document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
-      }      
-    }
-    if (result_alcb.length>0) {
-        result_alcb = result_alcb[0]; 
-        result_alcb.values.map(x=>{
-          if(query.search_mode==='like'){
-            x[0] = likeHL(x[0],reg,['<span class="highlight">','</span>'])
-          }
-          x[0] = snippet(x[0])
-        });
-        date_list_alcb = result_alcb.values.map(x=>x[3]);
-        date_list_alcb = date_list_alcb.filter(function(item, index, arr) {
-            return arr.indexOf(item, 0) === index;});
-        document.querySelector('label[for=source_2]').innerText = 'ALCB blogs ('+date_list_alcb.length+')';
-    }
+
+  if (result_wyas.length>0) {
+      result_wyas = result_wyas[0];
+      result_wyas.values.map(x=>{
+        if(query.search_mode==='like'){
+          x[0] = likeHL(x[0],reg,['<span class="highlight">','</span>'])
+        }
+        x[0] = snippet(x[0])
+      });
+      date_list_wyas = result_wyas.values.map(x=>x[2]);
+      date_list_wyas = date_list_wyas.filter(function(item, index, arr) {
+          return arr.indexOf(item, 0) === index;});
   }
+  document.querySelector('label[for=source_1]').innerText = 'WYAS ('+date_list_wyas.length+')';
+ 
+  if (result_alcb.length>0) {
+      result_alcb = result_alcb[0]; 
+      result_alcb.values.map(x=>{
+        if(query.search_mode==='like'){
+          x[0] = likeHL(x[0],reg,['<span class="highlight">','</span>'])
+        }
+        x[0] = snippet(x[0])
+      });
+      date_list_alcb = result_alcb.values.map(x=>x[3]);
+      date_list_alcb = date_list_alcb.filter(function(item, index, arr) {
+          return arr.indexOf(item, 0) === index;});
+  }
+  document.querySelector('label[for=source_2]').innerText = 'ALCB blogs ('+date_list_alcb.length+')';
+
   document.getElementById('wrapper').innerText = "";
 
 
   //merge results. calculate hits
+  if (query.source.indexOf("WYAS")===-1){
+    result_wyas = [];
+  }
+  if (query.source.indexOf("ALCB blogs")===-1){
+    result_alcb = [];
+  }
   var merged_result = mergeResult(result_wyas,result_alcb);
   type_options.map((x,idx)=>{
     var entry_type_hits = merged_result.filter(item=>item.result.findIndex(y=>y.type===x)!==-1).length;
@@ -386,7 +382,6 @@ function ftsAbstract(merged_result,current_year){
       block_info.innerHTML = x.date.replace(/,/g,'-')+' ( '+y.type+'; '+ y.credit +')';
       var abstract = document.createElement('div');
       abstract.className = 'abstract-text';
-      // abstract.innerHTML = '<a href="'+y.link+'" target="_blank" style="text-decoration: none; color: black;">'+y.text +'</a>';
       abstract.innerHTML = y.text;
 
       entry_block.appendChild(block_info);
@@ -430,8 +425,10 @@ var db = loadDB();
 var fts_result = [];
 document.getElementById('search').addEventListener('submit',function(){
   fts_result =  searchSubmit(this,db);
-  fts_result_notext = JSON.parse(JSON.stringify(fts_result));
-  fts_result_notext.map(x=>{x.result.map(y=>delete y.text)})
-  calendar.render();
+  if(typeof(fts_result)!=='undefined'){
+    fts_result_notext = JSON.parse(JSON.stringify(fts_result));
+    fts_result_notext.map(x=>{x.result.map(y=>delete y.text)})
+    calendar.render();
+  }
 })
 

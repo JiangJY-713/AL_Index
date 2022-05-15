@@ -31,8 +31,6 @@ var calendar = new Calendar('#calendar', {
             var current_fts_result = [];
             if(document.getElementById('year_hits_plot')!==null){
                 current_fts_result = fts_result_notext.filter(x=>id2Date(x.date).getTime()===e.events[0].startDate.getTime());
-               // current_fts_result.map(x=>{x.result.map(y=>delete y.text)})
-
             }
 
             for(var i in e.events) {
@@ -187,8 +185,7 @@ function openNav(){
     document.getElementById("search-field").style.border = "1px solid black";
     document.getElementById("search-field").style.cursor = "text";           
     document.getElementById("search-field").style.width = "265px";   
-    document.getElementById("search-mode").style.display = "";   
-    // document.getElementById("search-field").style.width = "380px";   
+    document.getElementById("search-mode").style.display = "";     
     document.querySelector(".search-form").style.setProperty('width', 'calc(100% - 40px)')     
     document.querySelector(".search-form").style.left = "15px";      
     document.querySelector(".search-form").style.borderBottom = "1px solid black";      
@@ -247,9 +244,6 @@ $(function(){
             );
 });
 
-// form.addEventListener("submit",(ev)=>{
-//     ev.preventDefault();
-// })
 
 document.querySelector('#update-current-year').addEventListener('click', function() {
     calendar.setYear(document.querySelector('#current-year').value);
@@ -285,8 +279,7 @@ document.querySelector('#TrProgress').addEventListener('click', function() {
                     progress.appendChild(label);
                 }
             }
-            let currentDiv = document.getElementById("legend");
-            // document.body.insertBefore(progress, currentDiv);                
+            let currentDiv = document.getElementById("legend");            
             document.getElementById("calendar-main").insertBefore(progress, currentDiv);                
         }
         else{
@@ -353,7 +346,6 @@ function unpackEntry(entry_info){
     endDate:id2Date(x.id),
     wyasLink: x.wyasLink,
     Tr: x.Tr,
-    // tag: x.tag
    }))
 }
 
@@ -372,7 +364,6 @@ function packEntry(dataSource){
             ('0'+x.startDate.getDate()).slice(-2),
         wyasLink: x.wyasLink,
         Tr: x.Tr,
-        // tag: x.tag
     }))
 }
 
@@ -386,9 +377,7 @@ function EntryObj(){
     this.Tr = [{}];
     this.Tr[0].link = [];
     this.Tr[0].credit = "";
-    this.Tr[0].type = "";  //"journal"/"travel notes"/"journal index"/...
-    // this.tag = {};
-    
+    this.Tr[0].type = "";  //"journal"/"travel notes"/"journal index"/...   
 }
 
 function DispRef(entry,current_fts_result){

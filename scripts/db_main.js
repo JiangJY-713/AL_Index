@@ -3,7 +3,7 @@ const sqlite3 = require('sqlite3').verbose()
 const db_op = require('./db_module')
 
 var db = new sqlite3.Database(
-    'journal.db', 
+    '../data/journal.db', 
     // sqlite3.OPEN_READWRITE, 
     function (err) {
         if (err) {

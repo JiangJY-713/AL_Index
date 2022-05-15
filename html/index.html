@@ -18,6 +18,10 @@
   gtag('config', 'UA-171803741-2');
 </script>
 <script type="text/javascript" src="../scripts/xlsx.core.min.js"></script>
+<script src='../scripts/sql-wasm.js'></script>
+<script src='../scripts/d3.v7.min.js'></script>
+
+
 
 <!-- <script src="https://unpkg.com/tippy.js@4"></script> -->
 
@@ -29,105 +33,95 @@
 </head>
 
 <body>
-<ul class="fixed-btn" id="feature">
-    <li>
-        <input type="text" onkeydown="jump('update-current-year')" id="current-year" style="margin: 10px; width: 100px"  placeholder="Year">
-        <button id="update-current-year" type="button" style="margin-right: 10px;">Jump to</button>
-        <button id="TrProgress" type="button" style="margin-left: 10px;margin-right: 10px;">Show coverage</button>
-    </li>
 
-    <li><a href="https://github.com/JiangJY-713/AL_Index" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Read me</a></li>
-    <li><a id="update_log" href="https://github.com/JiangJY-713/AL_Index/commits/main" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Update log</a></li>
-    <li><a id="souce_list" href="https://www.packedwithpotential.org/resources/anne-lister-diary-transcripts" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Source list</a></li>
+	<ul class="fixed-btn" id="feature">
+		<div style="flex: 1 1 auto">
+	    <li>
+	        <input type="text" onkeydown="jump('update-current-year')" id="current-year" style="margin: 10px; width: 100px"  placeholder="Year">
+	        <button id="update-current-year" type="button" style="margin-right: 10px;">Jump to</button>
+	        <button id="TrProgress" type="button" style="margin-left: 10px;margin-right: 10px;">Show coverage</button>
+	    </li>
 
-<!--     <a href="https://jiangjy-713.github.io/AL_Index/journal-structure.html" style="margin-left: 50px">AL Journal Structure</a> -->
-  
+	    <li><a href="https://github.com/JiangJY-713/AL_Index#indexing-anne-listers-journal" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Read me</a></li>
+	    <li><a id="update_log" href="https://github.com/JiangJY-713/AL_Index/commits/main" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Update log</a></li>
+	    <li><a id="souce_list" href="https://www.packedwithpotential.org/resources/anne-lister-diary-transcripts" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Source list</a></li>
+		</div>
+	</ul>
 
-<!--     <div id="maintainence" style="float: right;margin-right: 10px">
-        <input type="button" id="loadFile" style="margin: 10px;" value="maintain Trs" onclick="document.getElementById('maintain Trs').click();" />
-        <input type="file" style="display:none;" id="maintain Trs" onchange="dailyMaintain(this.files[0])"/>
+	<div id="placeholder" style="height:60px"></div>
+	<div style="position: fixed; right: 0;top:0%;height: 100%">
+		<div id="searchNav" class="sidenav">
+			<span class="close" onclick="closeNav()" style="cursor: pointer;"></span>
+			<form id="search" method="get" class="search-form" action="">
+				<label style="margin-bottom: 0px">
+					<input type="search" name="keyword" class="search-field" id ="search-field"
+                placeholder="Search" onclick="openNav()">
+				</label>
+				<select name="search-mode" id="search-mode" style="display: none;">
+				    <option value="match">full text search</option>
+				    <option value="like">pattern match</option>
+				</select>
+				<input type="submit" class="search-submit" value="Search">
 
-        <input type="button" id="loadFile" style="margin: 10px;" value="maintain Refs" onclick="document.getElementById('maintain Refs').click();" />
-        <input type="file" style="display:none;" id="maintain Refs" onchange="addWYAS(this.files[0])"/>  
-    </div> -->
-</ul>
+				<div id="search-options" style="display: none">
+					<div id="advanced-search" style="display: none">
+						 <p style="margin: 0">
+						 	<b>Entry type:</b>
+						    <input type="checkbox" checked="true" id="entry_type_0" name="entry_type" value="0">
+						    <label for="entry_type_0">journal</label>
+						    <input type="checkbox" checked="true" id="entry_type_1" name="entry_type" value="1">
+						    <label for="entry_type_1">travel notes</label>
+						    <input type="checkbox" checked="true" id="entry_type_2" name="entry_type" value="2">
+						    <label for="entry_type_2">AW's journal</label>
+						    <br>&emsp;&emsp;
+						    <input type="checkbox" checked="true" id="entry_type_3" name="entry_type" value="3">
+						    <label for="entry_type_3">journal index</label>
+						    <input type="checkbox" checked="true" id="entry_type_4" name="entry_type" value="4">
+						    <label for="entry_type_4">travel accounts</label>
+						    <input type="checkbox" checked="true" id="entry_type_5" name="entry_type" value="5">
+						    <label for="entry_type_5">itinerary</label>
+						  </p>
+						  <p style="margin: 0">
+						 	<b>Source:</b> 
+						    <input type="checkbox" checked="true" id="source_1" name="source" value="WYAS">
+						    <label for="source_1">WYAS</label>
+						    <input type="checkbox" checked="true" id="source_2" name="source" value="ALCB blogs">
+						    <label for="source_2">ALCB blogs</label><br>
 
-<div id="placeholder" style="height:60px"></div>
+						  </p>
+					</div>
+					<div id="search-options-btn" style="margin-right:5px;float: right; cursor: pointer; color: blue;" onclick="SearchOpt()">Search Options</div>
+					<div id="search-tips-btn" style="float: left; cursor: pointer; color: blue;" onclick="window.open('https://github.com/JiangJY-713/AL_Index#full-text-search')">Search Tips</div>
+				</div>
 
-    <div id="legend">
-        <img src="../img/legend.jpg">
-    </div>
-    <div id="calendar"></div>
-    <div class="modal fade" id="event-modal">
-    <div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title">Journal Entry</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-    </div>
-    <div class="modal-body">
-    <input type="hidden" name="event-index">
-    <form class="form-horizontal">
-    <div class="form-group row">
-    <label for="event-type" class="col-sm-4 control-label">Txt Type</label>
-    <div class="col-sm-8">
-    <input onkeydown="jump('event-name')" id="event-type" type="text" list="typelist" placeholder="select">
-        <datalist id="typelist">
-            <option>journal</option>
-            <option>journal index</option>
-            <option>itinerary</option>
-            <option>travel notes</option>
-            <option>travel accounts</option>
-        </datalist>
+			</form>
+			<div id="search-result" style="margin-top: 60px">
+				<div id="wrapper" style="position: absolute;">
+				</div>
+				<div>
+				<div id="fts-abstract">
+				</div>
+			</div>
+			</div>
 
-    </select>
-    </div>
-    </div>
-    <div class="form-group row">
-    <label for="event-name" class="col-sm-4 control-label">Transcripts Credit</label>
-    <div class="col-sm-8">
-    <input onkeydown="jump('event-location')" id="event-name" name="event-name" type="text" class="form-control">
-    </div>
-    </div>
-    <div class="form-group row">
-    <label for="event-location" class="col-sm-4 control-label">Transcript link</label>
-    <div class="col-sm-8">
-    <input onkeydown="jump('save-event')" id="event-location" name="event-location" type="text" class="form-control">
-    </div>
-    </div>
-    <div class="form-group row">
-    <label for="min-date" class="col-sm-4 control-label">Dates</label>
-    <div class="col-sm-8">
-    <div class="input-group input-daterange" data-provide="datepicker">
-    <input id="min-date" name="event-start-date" type="text" class="form-control">
-                    <div class="input-group-prepend input-group-append">
-                        <div class="input-group-text">to</div>
-                    </div>
-    <input name="event-end-date" type="text" class="form-control">
-    </div>
-    </div>
-    </div>
-    </form>
-    </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-    <button type="button" class="btn btn-primary" id="save-event">
-    Save
-    </button>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div id="context-menu">
-    </div>
+		</div>
+
+	</div>
+
+		<div id="calendar-main">		
+		    <div id="legend">
+		        <img src="../img/legend.jpg">
+		    </div>
+		    <div id="fts result"></div>
+		    <div id="calendar"></div>    
+		</div>
 
     
-
-      
 <!-- <script src='../scripts/main_v3.js'></script> -->
-<script src='../scripts/main_viewer.js'></script>
+
+<script src='../scripts/main_viewer_fts.js'></script>
+<script src='../scripts/fts_sqlite3.js'></script>
+<!-- <script src="./dist/bundle.js"></script> -->
 
 
 </body>
