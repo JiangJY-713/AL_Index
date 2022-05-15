@@ -31,7 +31,7 @@ SQLite provides two wildcards for constructing patterns: percent sign (`%`) and 
 | %X%YZ% | Fetch entries that have X before YZ |
   
 ### Result presentation
-The results will be highlighted in the calendar. Click the date and in the search box its abstracts will be scrolled to the top. The page also provides a heat map for results in each year, and by clicking on the squares the calendar and the abstracts will be set to that year. If the total number of results < 300, all the abstracted will be printed out.
+The results will be highlighted in the calendar. Click the date and in the search box its abstracts will be scrolled to the top. The page also provides a heat map for results in each year, and by clicking on the squares the calendar and the abstracts will be set to that year. If the total number of results < 300, all the abstracts will be printed out.
 <!-- <img src="https://github.com/JiangJY-713/AL_Index/blob/main/img/fts_demo.gif" width="70%"> -->
     
 ### Notes
