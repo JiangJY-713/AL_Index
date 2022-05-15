@@ -414,9 +414,9 @@ async function loadDB(){
     document.getElementById('wrapper').innerText = "Loading database...";
     // const dataPromise = fetch("https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/journal.db").then(res => res.arrayBuffer());
     const dataPromise = fetch("../data/journal.db").then(res => res.arrayBuffer());
-    document.getElementById('wrapper').innerText = "";
     const [SQL, buf] = await Promise.all([sqlPromise, dataPromise])
     // document.getElementById('search-result').innerText = "database loaded";
+    document.getElementById('wrapper').innerText = "";
     db = new SQL.Database(new Uint8Array(buf));
     return db;
 }
