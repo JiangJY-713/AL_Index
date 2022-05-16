@@ -411,12 +411,10 @@ async function loadDB(){
     const sqlPromise = initSqlJs({
       locateFile: file => `../scripts/sql-wasm.wasm`
     });
-    document.getElementById('wrapper').innerText = "Loading database...";
     // const dataPromise = fetch("https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/journal.db").then(res => res.arrayBuffer());
     const dataPromise = fetch("../data/journal.db").then(res => res.arrayBuffer());
     const [SQL, buf] = await Promise.all([sqlPromise, dataPromise])
-    // document.getElementById('search-result').innerText = "database loaded";
-    document.getElementById('wrapper').innerText = "";
+    document.querySelector('.loading').style.display = "none";
     db = new SQL.Database(new Uint8Array(buf));
     return db;
 }
