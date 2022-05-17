@@ -11,6 +11,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171803741-2"></script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M4KDJRT');</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -20,8 +25,6 @@
 <script type="text/javascript" src="../scripts/xlsx.core.min.js"></script>
 <script src='../scripts/sql-wasm.js'></script>
 <script src='../scripts/d3.v7.min.js'></script>
-
-
 
 <!-- <script src="https://unpkg.com/tippy.js@4"></script> -->
 
@@ -33,19 +36,19 @@
 </head>
 
 <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4KDJRT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	<ul class="fixed-btn" id="feature">
-		<div style="flex: 1 1 auto">
 	    <li>
 	        <input type="text" onkeydown="jump('update-current-year')" id="current-year" style="margin: 10px; width: 100px"  placeholder="Year">
 	        <button id="update-current-year" type="button" style="margin-right: 10px;">Jump to</button>
 	        <button id="TrProgress" type="button" style="margin-left: 10px;margin-right: 10px;">Show coverage</button>
 	    </li>
 
-	    <li><a href="https://github.com/JiangJY-713/AL_Index#indexing-anne-listers-journal" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Read me</a></li>
-	    <li><a id="update_log" href="https://github.com/JiangJY-713/AL_Index/commits/main" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Update log</a></li>
-	    <li><a id="souce_list" href="https://www.packedwithpotential.org/resources/anne-lister-diary-transcripts" target="_blank" style="margin-left: 10px;margin-right: 10px;text-decoration: none;color: black;">Source list</a></li>
-		</div>
+	    <li><a href="https://github.com/JiangJY-713/AL_Index#indexing-anne-listers-journal" target="_blank">Read me</a></li>
+	    <li><a id="update_log" href="https://github.com/JiangJY-713/AL_Index/commits/main" target="_blank">Update log</a></li>
+	    <li><a id="souce_list" href="https://www.packedwithpotential.org/resources/anne-lister-diary-transcripts" target="_blank">Source list</a></li>
 	</ul>
 
 	<div id="placeholder" style="height:60px"></div>

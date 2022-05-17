@@ -19,10 +19,16 @@ li a {
   padding: 5px;
   line-height: 50px;
   cursor:pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: black;
 }
 
 li a:hover{
   background-color:#CFCFCF;
+  color: black;
+  text-decoration: none;
 }
 
 button{
@@ -100,7 +106,6 @@ details + dl {
 
 #search-tips-btn{
   position: relative;
-  /*margin-right: 5px;*/
 }
 
 .search-form {
