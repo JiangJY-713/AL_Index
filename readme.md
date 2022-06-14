@@ -15,7 +15,7 @@ The search feature is case insensitive.
 
 ### Search with SQLite FTS5 extension
 - The page uses [sql.js](https://github.com/sql-js/sql.js) to run an SQLite database (`data/journal.db`) with [FTS5 extension](https://www.sqlite.org/fts5.html) to support keyword search.  
-- The tokenizer used is [Porter Tokenizer](https://www.sqlite.org/fts5.html#Porter_Tokenizer), allowing search terms like "correction" to match similar words such as "corrected" or "correcting".  
+- The default tokenizer used is [Porter Tokenizer](https://www.sqlite.org/fts5.html#porter_tokenizer), allowing search terms like "correction" to match similar words such as "corrected" or "correcting". The simple [Unicode61 Tokenizer](https://www.sqlite.org/fts5.html#unicode61_tokenizer) option is also provided to allow exact match, and can be chosen in the search box.
 - The fts5 full-text query syntax allows you to carry out more advanced searches, such as phrase queries, prefix queries, using boolean operators (`NOT`/`AND`/`OR`) etc. The detailed explanation of the syntax [can be read here](https://www.sqlite.org/fts5.html#full_text_query_syntax). 
   
 ### Pattern matching
