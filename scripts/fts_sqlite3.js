@@ -36,6 +36,14 @@ function searchSubmit(form,db){
       document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
       return;
     }
+  }else if(query.search_mode==='match_exact'){
+    try{
+      result_wyas = db.exec(`select highlight(wyas_exact_fts, 0, '<span class="highlight">', '</span>'),link,date,type,part from wyas_exact_fts where text match ? AND text NOTNULL`,[query.keyword]);
+      result_alcb = db.exec(`select highlight(alcb_exact_fts, 0, '<span class="highlight">', '</span>'),credit,link,date,type,part from alcb_exact_fts where text match ? AND text NOTNULL`,[query.keyword]);   
+    }catch(err){
+      document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
+      return;
+    }   
   }else if(query.search_mode==='like'){
     try{
       result_wyas = db.exec(`select text,link,date,type,part from wyas_fts where text like ? AND text NOTNULL`,[query.keyword]);

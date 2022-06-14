@@ -112,6 +112,7 @@ var calendar = new Calendar('#calendar', {
             current_fts_result = fts_result_notext.filter(x=>id2Date(x.date).getTime()===events[0].startDate.getTime());
             if(current_fts_result.length>0){
                 elt.style.backgroundColor = "#FFFF7C"
+                elt.style.borderRadius = "50%"
                 var date_id = events[0].startDate.getFullYear()+','+
             ('0'+(Number(events[0].startDate.getMonth())+1)).slice(-2)+','+
             ('0'+events[0].startDate.getDate()).slice(-2);
@@ -184,9 +185,9 @@ function openNav(){
     document.getElementById("search-field").style.backgroundSize = "18px 18px";
     document.getElementById("search-field").style.border = "1px solid black";
     document.getElementById("search-field").style.cursor = "text";           
-    document.getElementById("search-field").style.width = "265px";   
+    document.getElementById("search-field").style.width = "275px";   
     document.getElementById("search-mode").style.display = "";     
-    document.querySelector(".search-form").style.setProperty('width', 'calc(100% - 40px)')     
+    document.querySelector(".search-form").style.setProperty('width', 'calc(100% - 20px)')     
     document.querySelector(".search-form").style.left = "15px";      
     document.querySelector(".search-form").style.borderBottom = "1px solid black";      
     document.querySelector("#search-options").style.display = "";      
@@ -585,6 +586,8 @@ function updateTrWYAS(vol_type,vol_index){
         }
     }
     calendar.setDataSource(dataSource)
+    obj = packEntry(calendar._dataSource);
+    saveJSON(obj,"data.json");
 }
 
 
