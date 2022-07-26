@@ -4,40 +4,25 @@ var calendar = new Calendar('#calendar', {
     minDate: new Date(1800,4,21),
     maxDate: new Date(1840,7,13),
     dataSource:  function(){
-        // Load data from GitHub  "https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/data.json"
         return fetch("../data/data.json")
       .then(result => result.json())
       .then(result => unpackEntry(result));
   },
     enableContextMenu: false,
     enableRangeSelection: false,
-    contextMenuItems:[
-        {
-            text: 'Update',
-            click: editEvent
-        },
-        {
-            text: 'Delete',
-            click: deleteEvent
-        }
-    ],
     selectRange: function(e) {
         editEvent({ startDate: e.startDate, endDate: e.endDate });
     },
-    mouseOnDay: function(e) {
-      
+    mouseOnDay: function(e) {     
         if(e.events.length > 0) {
             var content = '';
             var current_fts_result = [];
             if(document.getElementById('year_hits_plot')!==null){
-                current_fts_result = fts_result_notext.filter(x=>id2Date(x.date).getTime()===e.events[0].startDate.getTime());
+                current_fts_result = fts_result.filter(x=>id2Date(x.date).getTime()===e.events[0].startDate.getTime());
             }
-
             for(var i in e.events) {
-                content += DispRef(e.events[i],current_fts_result);
-                // var $link=$(content).find('.linkspan');            
+                content += DispRef(e.events[i],current_fts_result);    
             }            
-
             $(e.element).popover({ 
                 trigger: 'manual',
                 container: 'body',
@@ -47,7 +32,6 @@ var calendar = new Calendar('#calendar', {
                 // delay:{show:500, hide:1000},
                 container: $(e.element)
             });
-
             $(e.element).popover('show');
             // e.popover.stopPropagation();
         }
@@ -89,77 +73,40 @@ var calendar = new Calendar('#calendar', {
                 if (events[i].Tr.findIndex(item=>item.type==="travel notes")===-1&
                     events[i].wyasLink.findIndex(item=>item.type==="travel notes"&item.tr==="y")===-1) {
                     parent.style.outline = "2px dotted "+colorScheme[1]
-                    parent.style.outlineOffset = "-4px"
                 }else{
                     parent.style.outline = "2px solid "+colorScheme[1]
-                    parent.style.outlineOffset = "-4px"
                 }
+                parent.style.outlineOffset = "-4px"
             }
             //AW's journal
             if (events[i].wyasLink.findIndex(item=>item.type==="AW's journal")!==-1) {
                 if (events[i].Tr.findIndex(item=>item.type==="AW's journal")===-1&
                     events[i].wyasLink.findIndex(item=>item.type==="AW's journal"&item.tr==="y")===-1) {
                     elt.style.border = "2px dotted "+colorScheme[5]
-                    elt.style.borderRadius = "50%"
                 }else{
                     elt.style.border = "2px solid "+colorScheme[5]
-                    elt.style.borderRadius = "50%"
                 }
+                elt.style.borderRadius = "50%"
             }
         }
-
-        if(document.getElementById('year_hits_plot')!==null){
-            current_fts_result = fts_result_notext.filter(x=>id2Date(x.date).getTime()===events[0].startDate.getTime());
-            if(current_fts_result.length>0){
+        // if(document.getElementById('year_hits_plot')!==null){
+        if(fts_result.length>0){
+            var date_id = events[0].startDate.getFullYear()+','+
+                    ('0'+(Number(events[0].startDate.getMonth())+1)).slice(-2)+','+
+                    ('0'+events[0].startDate.getDate()).slice(-2);
+            // current_fts_result = fts_result_notext.filter(x=>id2Date(x.date).getTime()===events[0].startDate.getTime());
+            if(fts_result.findIndex(x=>x.date===date_id)!==-1){
                 elt.style.backgroundColor = "#FFFF7C"
                 elt.style.borderRadius = "50%"
-                var date_id = events[0].startDate.getFullYear()+','+
-            ('0'+(Number(events[0].startDate.getMonth())+1)).slice(-2)+','+
-            ('0'+events[0].startDate.getDate()).slice(-2);
                 elt.onclick = function(){
                     document.querySelector('#fts-abstract').scrollTo({top:document.querySelector('.entry-abstract[entry_id="'+date_id+'"]').offsetTop})
                 }
             }
-            
         }
-
         return parent;
         return elt;
       }
-
 });
-
-
-
-function editEvent(event) {
-
-    $('#event-modal input[name="event-index"]').val(event ? event.id : '');
-    $('#event-modal input[name="event-name"]').val(event ? event.name : '');
-    $('#event-modal input[name="event-location"]').val(event ? event.location : '');
-    $('#event-modal input[name="event-start-date"]').datepicker('update', event ? event.startDate : '');
-    $('#event-modal input[name="event-end-date"]').datepicker('update', event ? event.endDate : '');
-    $('#event-modal').modal();
-}
-
-function deleteEvent(event) {
-    var dataSource = calendar._dataSource;
-    calendar.setDataSource(dataSource.filter(item => item.startDate.getTime() !== event.startDate.getTime()));
-}
-
-function saveEvent() {
-    var event = {
-        id: $('#event-modal input[name="event-index"]').val(),
-        name: $('#event-modal input[name="event-name"]').val(),
-        location: $('#event-modal input[name="event-location"]').val(),
-        startDate: $('#event-modal input[name="event-start-date"]').datepicker('getDate'),
-        endDate: $('#event-modal input[name="event-end-date"]').datepicker('getDate')
-    }
-    var dataSource = calendar._dataSource;
-    dataSource = addEvent(dataSource,event);
-    calendar.setDataSource(dataSource);
-    $('#event-modal').modal('hide');
-}
-
 
 // buttons etc.
 $(function() {
@@ -174,37 +121,37 @@ $(function() {
     });
 });
 
-$('#save-event').click(function() {
-        saveEvent();
-});
-
 function openNav(){
     document.getElementById("calendar-main").style.marginRight = "435px";
     document.getElementById("searchNav").style.width = "430px";
-    document.getElementById("search-field").style.backgroundColor = "#fff";
-    document.getElementById("search-field").style.backgroundSize = "18px 18px";
-    document.getElementById("search-field").style.border = "1px solid black";
-    document.getElementById("search-field").style.cursor = "text";           
-    document.getElementById("search-field").style.width = "275px";   
-    document.getElementById("search-mode").style.display = "";     
-    document.querySelector(".search-form").style.setProperty('width', 'calc(100% - 20px)')     
-    document.querySelector(".search-form").style.left = "15px";      
-    document.querySelector(".search-form").style.borderBottom = "1px solid black";      
+    var search_field = document.getElementById("search-field");
+    search_field.style.backgroundColor = "#fff";
+    search_field.style.backgroundSize = "18px 18px";
+    search_field.style.border = "1px solid black";
+    search_field.style.cursor = "text";           
+    search_field.style.width = "275px";   
+    document.getElementById("search-mode").style.display = ""; 
+    var search_form = document.querySelector(".search-form");
+    search_form.style.setProperty('width', 'calc(100% - 20px)')     
+    search_form.style.left = "15px";      
+    search_form.style.borderBottom = "1px solid black";      
     document.querySelector("#search-options").style.display = "";      
 }
 
 function closeNav(){
     document.getElementById("calendar-main").style.marginRight = "0px";
     document.getElementById("searchNav").style.width = "";
-    document.getElementById("search-field").style.backgroundSize = "24px 24px";
-    document.getElementById("search-field").style.backgroundColor = "transparent";
-    document.getElementById("search-field").style.border = "none";
-    document.getElementById("search-field").style.cursor = "pointer";         
-    document.getElementById("search-field").style.width = "0";  
-    document.getElementById("search-mode").style.display = "none";   
-    document.querySelector(".search-form").style.width = ""; 
-    document.querySelector(".search-form").style.left = ""; 
-    document.querySelector(".search-form").style.borderBottom = "";      
+    var search_field = document.getElementById("search-field");
+    search_field.style.backgroundSize = "24px 24px";
+    search_field.style.backgroundColor = "transparent";
+    search_field.style.border = "none";
+    search_field.style.cursor = "pointer";         
+    search_field.style.width = "0";  
+    document.getElementById("search-mode").style.display = "none"; 
+    var search_form = document.querySelector(".search-form");
+    search_form.style.width = ""; 
+    search_form.style.left = ""; 
+    search_form.style.borderBottom = "";      
     document.querySelector("#search-options").style.display = "none";           
 }
 
@@ -231,7 +178,6 @@ $('.search-form').on('submit',function(e){
     e.preventDefault();
 })
 
-
 //update log 
 $(function(){
     commit_url = "https://api.github.com/repos/JiangJY-713/AL_Index/commits";
@@ -244,7 +190,6 @@ $(function(){
           }
             );
 });
-
 
 document.querySelector('#update-current-year').addEventListener('click', function() {
     calendar.setYear(document.querySelector('#current-year').value);
@@ -293,8 +238,7 @@ document.querySelector('#TrProgress').addEventListener('click', function() {
         coverage = document.getElementById("progress")
         coverage.style.display = "none"
         button.innerText = "Show coverage"
-    }
-    
+    } 
 });
 
 function addEvent(dataSource,event){
@@ -382,13 +326,10 @@ function EntryObj(){
 }
 
 function DispRef(entry,current_fts_result){
-   // content = '<div class="event-tooltip-content"><div>WYAS Link: '
-   // content = '<div class="event-tooltip-content"><details open><summary>WYAS Link</summary><div>'
    content = '<details open class="details-black"><summary><b>WYAS Link</b></summary><div>'
    contentTr = [];
    hl_str = ['<span class="highlight">','</span>'];
    sub_res = [];
-
    for (var i in entry.wyasLink){
     entry_type = '<i>'+entry.wyasLink[i].type+'</i>'
     if(current_fts_result.length>0){
@@ -459,8 +400,6 @@ function DispRef(entry,current_fts_result){
     return content
 }
 
-
-
 function saveJSON(data, filename){
     if(!data) {
         alert('no data to be saved!');
@@ -481,15 +420,13 @@ function saveJSON(data, filename){
     a.dispatchEvent(e)
 }
 
-
 function jump(next){
-var nextInp = document.getElementById(next);
-var event = arguments.callee.caller.arguments[0] || window.event;
-if(event.keyCode == 13){//"enter" was pressed，keycode:13
-nextInp.focus();
+    var nextInp = document.getElementById(next);
+    var event = arguments.callee.caller.arguments[0] || window.event;
+    if(event.keyCode == 13){//"enter" was pressed，keycode:13
+    nextInp.focus();
+    }
 }
-}
-
 
 function dailyMaintain(file, callback) {
    var reader = new FileReader();
@@ -530,10 +467,6 @@ function addWYAS(file,callback){
         oSheetAW = workbook.Sheets["AW's journal"];
         oSheet = oSheetAW;
         for(i=2;typeof(oSheet["F"+i])!=="undefined";i++){
-            console.log(i)
-            if (i===1564) {
-                test = 1
-            }
             data_index = dataSource.findIndex(item=>item.startDate.getTime()===id2Date(oSheet["A"+i].v).getTime());
             if(data_index!==-1){
                 wyas_index = dataSource[data_index].wyasLink.findIndex(item=>item.type===oSheet["B"+i].v)
@@ -589,5 +522,3 @@ function updateTrWYAS(vol_type,vol_index){
     obj = packEntry(calendar._dataSource);
     saveJSON(obj,"data.json");
 }
-
-

@@ -84,7 +84,6 @@ function searchSubmit(form,db){
 
   document.getElementById('wrapper').innerText = "";
 
-
   //merge results. calculate hits
   if (query.source.indexOf("WYAS")===-1){
     result_wyas = [];
@@ -274,7 +273,6 @@ function wc2RegExp(query){
       })
     }
   }
-
   if (index_wc.length===0){
     reg = '^'+query+'$'
   }else{
@@ -301,7 +299,6 @@ function wc2RegExp(query){
       reg += '$'
     }
   }
-
   reg = new RegExp(reg,'gi')
   return reg
 }
@@ -362,7 +359,6 @@ function snippet(text,snippet_size){
       }
     }
   }
-  
   return text_snippet;
 }
 
@@ -370,14 +366,12 @@ function ftsAbstract(merged_result,current_year){
   if (document.querySelector('.entry-abstract')!==null){
     d3.selectAll('.entry-abstract').remove();
   }
-
   // initial display
   if (merged_result.length<300){
     var current_fts_result = merged_result
   }else{
     var current_fts_result = merged_result.filter(x=>x.date.split(',')[0]===current_year.toString());
   }
-
   current_fts_result.map(x=>{
     x.result.map(y=>{
       var entry_block = document.createElement('div');
@@ -395,31 +389,15 @@ function ftsAbstract(merged_result,current_year){
       entry_block.appendChild(block_info);
       entry_block.appendChild(abstract);
       document.getElementById('fts-abstract').appendChild(entry_block);
-
     })
   })
 }
-
-function distinct(a, b) {
-    let arr = a.concat(b)
-    let result = []
-    let obj = {}
-    for (let i of arr) {
-        if (!obj[i]) {
-            result.push(i)
-            obj[i] = 1
-        }
-    }
-    return result
-}
-
 
 async function loadDB(){
     var res = new Object;
     const sqlPromise = initSqlJs({
       locateFile: file => `../scripts/sql-wasm.wasm`
     });
-    // const dataPromise = fetch("https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/journal.db").then(res => res.arrayBuffer());
     const dataPromise = fetch("../data/journal.db").then(res => res.arrayBuffer());
     const [SQL, buf] = await Promise.all([sqlPromise, dataPromise])
     document.querySelector('.loading').style.display = "none";
@@ -432,9 +410,6 @@ var fts_result = [];
 document.getElementById('search').addEventListener('submit',function(){
   fts_result =  searchSubmit(this,db);
   if(typeof(fts_result)!=='undefined'){
-    fts_result_notext = JSON.parse(JSON.stringify(fts_result));
-    fts_result_notext.map(x=>{x.result.map(y=>delete y.text)})
     calendar.render();
   }
 })
-
