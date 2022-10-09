@@ -6,7 +6,8 @@ var calendar = new Calendar('#calendar', {
     maxDate: new Date(1840,7,13),
     dataSource:  function(){
         // Load data from GitHub  "https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/data.json"
-        return fetch("https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/data.json")
+        // return fetch("https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/data.json")
+        return fetch("../data/data.json")
       .then(result => result.json())
       .then(result => unpackEntry(result));
   },
@@ -328,7 +329,17 @@ function TypeFormat(type){
         typeWformat = '<font color="'+colorScheme[5]+'">'+type+'</font>'
     }
     return typeWformat;
+}
 
+function wyaslink2page(url){
+    url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/6/26/"
+    pageText_arr = url.split("/").slice(-2)
+    if (url.includes(url_prefix)){
+        pageText = "26(" + pageText_arr[0]+")-p"+pageText_arr[1]
+    }else{
+        pageText = pageText_arr[0]+"-p"+pageText_arr[1]
+    }
+    return "Vol."+pageText
 }
 
 function DispRef(entry){
@@ -341,9 +352,9 @@ function DispRef(entry){
     content += TypeFormat(entry.wyasLink[i].type)+' (';
     for (var j in entry.wyasLink[i].link){
         if(Number(j)===entry.wyasLink[i].link.length-1){
-            content += '<i><a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a></i>'
+            content += '<i><a href='+entry.wyasLink[i].link[j]+' target="_blank">'+wyaslink2page(entry.wyasLink[i].link[j])+'</a></i>'
         }else{
-            content += '<i><a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a></i>'+'|'
+            content += '<i><a href='+entry.wyasLink[i].link[j]+' target="_blank">'+wyaslink2page(entry.wyasLink[i].link[j])+'</a></i>'+'||'
         }       
     }
     content += '); '
@@ -506,4 +517,6 @@ function updateTrWYAS(vol_type,vol_index){
         }
     }
     calendar.setDataSource(dataSource)
+    obj = packEntry(calendar._dataSource);
+    saveJSON(obj,"data.json");
 }

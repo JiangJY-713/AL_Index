@@ -312,6 +312,17 @@ function packEntry(dataSource){
     }))
 }
 
+function wyaslink2page(url){
+    url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/6/26/"
+    pageText_arr = url.split("/").slice(-2)
+    if (url.includes(url_prefix)){
+        pageText = "26(" + pageText_arr[0]+")-p"+pageText_arr[1]
+    }else{
+        pageText = pageText_arr[0]+"-p"+pageText_arr[1]
+    }
+    return "Vol."+pageText
+}
+
 function EntryObj(){
     this.startDate = "";    //"year,month,day",eg. "1817,4,5"
     this.endDate = "";
@@ -340,7 +351,8 @@ function DispRef(entry,current_fts_result){
     }
     content += entry_type+' ('
     for (var j in entry.wyasLink[i].link){
-        part = '<a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a>';
+        part = '<a href='+entry.wyasLink[i].link[j]+' target="_blank">'+wyaslink2page(entry.wyasLink[i].link[j])+'</a>';
+        // part = '<a href='+entry.wyasLink[i].link[j]+' target="_blank">p'+(Number(j)+1)+'</a>';
         if(sub_res.length>0){
             if(sub_res.findIndex(x=>x.credit==='WYAS'& x.part===(Number(j)+1))!==-1){
                 part = hl_str[0]+part+hl_str[1]
@@ -348,7 +360,7 @@ function DispRef(entry,current_fts_result){
         }
         content += part
         if(Number(j)!==entry.wyasLink[i].link.length-1){
-            content += '|'
+            content += '||'
         }
     }
     content += '); '
