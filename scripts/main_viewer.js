@@ -5,7 +5,7 @@ var calendar = new Calendar('#calendar', {
     maxDate: new Date(1840,7,13),
     dataSource:  function(){
         // Load data from GitHub  "https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/data.json"
-        return fetch("https://raw.githubusercontent.com/JiangJY-713/AL_Index/main/data/data.json")
+        return fetch("../data/data.json")
       .then(result => result.json())
       .then(result => unpackEntry(result));
   },
@@ -68,14 +68,14 @@ var calendar = new Calendar('#calendar', {
             // journal
             if (events[i].wyasLink.findIndex(item=>item.type==="journal")===-1) {
                 elt.style.color = colorScheme[4]
-            }else if (events[i].Tr.findIndex(item=>item.type==="journal")===-1&
-                events[i].wyasLink.findIndex(item=>item.type==="journal"&item.tr==="y")===-1) {
+            }else if (events[i].Tr.findIndex(item=>item.type==="journal")===-1&&
+                events[i].wyasLink.findIndex(item=>item.type==="journal"&&item.tr==="y")===-1) {
                 parent.style.backgroundColor = colorScheme[0]
             }
             //journal index; itinerary; travel accounts
-            if (events[i].wyasLink.findIndex(item=>item.type==="journal index"|item.type==="travel accounts"|item.type==="itinerary")!==-1) {
-                if (events[i].Tr.findIndex(item=>item.type==="journal index"|item.type==="travel accounts"|item.type==="itinerary")===-1&
-                    events[i].wyasLink.findIndex(item=>(item.type==="journal index"|item.type==="travel accounts"|item.type==="itinerary")&item.tr==="y")===-1) {
+            if (events[i].wyasLink.findIndex(item=>item.type==="journal index"||item.type==="travel accounts"||item.type==="itinerary")!==-1) {
+                if (events[i].Tr.findIndex(item=>item.type==="journal index"||item.type==="travel accounts"||item.type==="itinerary")===-1&&
+                    events[i].wyasLink.findIndex(item=>(item.type==="journal index"||item.type==="travel accounts"||item.type==="itinerary")&&item.tr==="y")===-1) {
                     parent.style.borderBottom = "1px solid "+colorScheme[2]
                 }else{
                     parent.style.borderBottom = "2px solid "+colorScheme[2]
@@ -83,8 +83,8 @@ var calendar = new Calendar('#calendar', {
             }
             //travel notes
             if (events[i].wyasLink.findIndex(item=>item.type==="travel notes")!==-1) {
-                if (events[i].Tr.findIndex(item=>item.type==="travel notes")===-1&
-                    events[i].wyasLink.findIndex(item=>item.type==="travel notes"&item.tr==="y")===-1) {
+                if (events[i].Tr.findIndex(item=>item.type==="travel notes")===-1&&
+                    events[i].wyasLink.findIndex(item=>item.type==="travel notes"&&item.tr==="y")===-1) {
                     parent.style.outline = "2px dotted "+colorScheme[1]
                     parent.style.outlineOffset = "-4px"
                 }else{
@@ -94,8 +94,8 @@ var calendar = new Calendar('#calendar', {
             }
             //AW's journal
             if (events[i].wyasLink.findIndex(item=>item.type==="AW's journal")!==-1) {
-                if (events[i].Tr.findIndex(item=>item.type==="AW's journal")===-1&
-                    events[i].wyasLink.findIndex(item=>item.type==="AW's journal"&item.tr==="y")===-1) {
+                if (events[i].Tr.findIndex(item=>item.type==="AW's journal")===-1&&
+                    events[i].wyasLink.findIndex(item=>item.type==="AW's journal"&&item.tr==="y")===-1) {
                     elt.style.border = "2px dotted "+colorScheme[5]
                     elt.style.borderRadius = "50%"
                 }else{
@@ -195,8 +195,8 @@ document.querySelector('#TrProgress').addEventListener('click', function() {
                 bar = document.createElement("progress")
                 entry_num = data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="journal")!==-1)).length
                             +data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="travel notes")!==-1)).length
-                annual_Tr = data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="journal"&x.tr==="y")!==-1|item.Tr.findIndex(x=>x.type==="journal")!==-1)).length
-                            +data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="travel notes"&x.tr==="y")!==-1|item.Tr.findIndex(x=>x.type==="travel notes")!==-1)).length
+                annual_Tr = data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="journal"&&x.tr==="y")!==-1||item.Tr.findIndex(x=>x.type==="journal")!==-1)).length
+                            +data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="travel notes"&&x.tr==="y")!==-1||item.Tr.findIndex(x=>x.type==="travel notes")!==-1)).length
                 if (entry_num>0){
                     bar.max = entry_num
                     bar.value = annual_Tr;
@@ -238,9 +238,9 @@ function addEvent(dataSource,event){
                 }else{
                     credit_exist = 0;
                     for(var j in dataSource[i].Tr){
-                        if (dataSource[i].Tr[j].link.includes(event.location)&dataSource[i].Tr[j].type===event.type){
+                        if (dataSource[i].Tr[j].link.includes(event.location)&&dataSource[i].Tr[j].type===event.type){
                             credit_exist = 1;
-                        }else if(dataSource[i].Tr[j].credit===event.name&dataSource[i].Tr[j].type===event.type){
+                        }else if(dataSource[i].Tr[j].credit===event.name&&dataSource[i].Tr[j].type===event.type){
                             dataSource[i].Tr[j].link.push(event.location);
                             credit_exist = 1;
                         }
@@ -411,7 +411,7 @@ function dailyMaintain(file, callback) {
         dataSource = calendar._dataSource;
         oSheet = workbook.Sheets["daily maintain"];
         for(var i=2;typeof(oSheet["A"+i]) !=="undefined";i++){ 
-            if(typeof(oSheet["B"+i]) !=="undefined" & typeof(oSheet["C"+i]) !=="undefined" ){
+            if(typeof(oSheet["B"+i]) !=="undefined" && typeof(oSheet["C"+i]) !=="undefined" ){
                 event = new Object;
                 event.startDate = id2Date(oSheet["B"+i].v.toString());
                 event.endDate = event.startDate;
