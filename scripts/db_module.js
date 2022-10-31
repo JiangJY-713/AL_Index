@@ -291,6 +291,14 @@ async function crawler_single(doc,db,mode){
                     $(".caption_content.color_class_inner").find("p").each(function(i,v){
                         text += cleanText(v,$);
                     })
+                }else if(url.includes('wolfy58.tumblr.com')){
+                    $(".textpostbody").find("p").each(function(i,v){
+                        text += cleanText(v,$);
+                    })
+                }else if(url.includes('www.tumblr.com/whatdoesshedotothem')){
+                    $(".GzjsW").find("p").each(function(i,v){
+                        text += cleanText(v,$);
+                    })
                 }else{
                     $("article[data-post-id="+data_post_id+"]").find("div.body-text").find("p").each(function(i,v){
                         text += cleanText(v,$);
@@ -363,8 +371,9 @@ async function crawler_single(doc,db,mode){
             if (text!==""){
                 doc.text = text;
             }else{
+                current_time = new Date().toLocaleString()
                 console.log('Failed to fetch text: entry_id = '+doc.entry_id+'  part:'+doc.part)
-                fs.appendFileSync('update alcb error.txt','Failed to fetch text: entry_id = '+doc.entry_id+'  part:'+doc.part)
+                fs.appendFileSync('update alcb error.txt', current_time+'  Failed to fetch text: entry_id = '+doc.entry_id+'  part:'+doc.part+'\n')
             }
             updateTR_inDB(doc,db,mode)
         }else if(mode.includes('wyas')){
@@ -450,6 +459,7 @@ function cleanTextStr(sub_text){
             }
             matches = sub_text.match(/[A-Za-z]*\[([^A-Z]*?)][A-Za-z]*/g);
             if (matches!==null){
+                // if (sub_text[0]==="‘"){sub_text.splice(0,1)}
                 for (var i in matches){
                     if (matches[i].match(/\[([^A-Za-z].*?)]/g)===null
                     &(matches[i][0]!=="["|matches[i][matches[i].length-1]!=="]")){
@@ -467,9 +477,9 @@ function cleanTextStr(sub_text){
             }
     }
     //start a new line if it's title/time/margin symbol/margin notes/WYAS reference/annotation
-    if (sub_text.length>15|sub_text.match(/[A-Za-z]{2,}/g)!==null){
-        sub_text = (sub_text+" ").replace(/\s+/g," ")
-    }
+    // if (sub_text.length>15|sub_text.match(/[A-Za-z]{2,}/g)!==null){
+    //     sub_text = (sub_text+" ").replace(/\s+/g," ")
+    // }
     
     if (sub_text.length<30 |sub_text.includes('}')|sub_text.includes('{')
     |sub_text.includes(' margin')|sub_text.includes('WYAS')|sub_text.match(/^\[[0-9]+]/g)!==null){
@@ -490,13 +500,13 @@ async function updateTR_inDB(doc,db,mode){
             }
             console.log('inserted: ',this)
         });
-        db.run('INSERT INTO alcb_fts(text, credit, link, date,type,part) VALUES(?,?,?,?,?,?)',
-        [doc.text,doc.credit,doc.link,doc.date,doc.type,doc.part], function (err) {
-            if (err) {
-                return console.log(err.message)
-            }
-            console.log('inserted: ',this)
-        });
+        // db.run('INSERT INTO alcb_fts(text, credit, link, date,type,part) VALUES(?,?,?,?,?,?)',
+        // [doc.text,doc.credit,doc.link,doc.date,doc.type,doc.part], function (err) {
+        //     if (err) {
+        //         return console.log(err.message)
+        //     }
+        //     console.log('inserted: ',this)
+        // });
         break;
         case 'update alcb': db.run('UPDATE alcb SET text=(?) WHERE entry_id=(?) AND part=(?) AND credit=(?)',
         [doc.text,doc.entry_id,doc.part,doc.credit], function (err) {
@@ -505,13 +515,13 @@ async function updateTR_inDB(doc,db,mode){
             }
             console.log('update alcb: ', this)
         });
-        db.run('UPDATE alcb_fts SET text=(?) WHERE date=(?) AND type=(?) AND part=(?) AND credit=(?)',
-        [doc.text,doc.date,doc.type,doc.part,doc.credit], function (err) {
-            if (err) {
-                return console.log('update alcb error: ', err.message)
-            }
-            console.log('update alcb: ', this)
-        });
+        // db.run('UPDATE alcb_fts SET text=(?) WHERE date=(?) AND type=(?) AND part=(?) AND credit=(?)',
+        // [doc.text,doc.date,doc.type,doc.part,doc.credit], function (err) {
+        //     if (err) {
+        //         return console.log('update alcb error: ', err.message)
+        //     }
+        //     console.log('update alcb: ', this)
+        // });
         break;
         case 'update wyas':db.run('UPDATE wyas SET text=(?) WHERE entry_id=(?) AND part=(?)',
         [doc.text,doc.entry_id,doc.part], function (err) {
@@ -520,13 +530,13 @@ async function updateTR_inDB(doc,db,mode){
             }
             console.log('update wyas: ', this)
         });
-        db.run('UPDATE wyas_fts SET text=(?) WHERE date=(?) AND type=(?) AND part=(?)',
-        [doc.text,doc.date,doc.type,doc.part], function (err) {
-            if (err) {
-                return console.log('update wyas error: ', err.message)
-            }
-            console.log('update wyas: ', this)
-        });
+        // db.run('UPDATE wyas_fts SET text=(?) WHERE date=(?) AND type=(?) AND part=(?)',
+        // [doc.text,doc.date,doc.type,doc.part], function (err) {
+        //     if (err) {
+        //         return console.log('update wyas error: ', err.message)
+        //     }
+        //     console.log('update wyas: ', this)
+        // });
         break;
     }
 }
