@@ -8,6 +8,9 @@ function searchSubmit(form,db){
   query.search_mode = formData.get('search-mode');
   var result_wyas = [];  var result_alcb =[];
   var date_list_wyas = []; var date_list_alcb = [];
+  wyas_msg = document.querySelector('label[for=source_1]')
+  alcb_msg = document.querySelector('label[for=source_2]')
+  wrapper_msg = document.getElementById('wrapper')
 
   if(query.search_mode==='like'){
       var reg = wc2RegExp(query.keyword);
@@ -21,19 +24,19 @@ function searchSubmit(form,db){
     type_options.map((x,idx)=>{
       document.querySelector('label[for=entry_type_'+idx+']').innerText = x;
     })
-    document.querySelector('label[for=source_1]').innerText = 'WYAS';
-    document.querySelector('label[for=source_2]').innerText = 'ALCB blogs';
+    wyas_msg.innerText = 'WYAS';
+    alcb_msg.innerText = 'ALCB blogs';
     return [];
   }
 
-  document.getElementById('wrapper').innerText = "Searching...";
+  wrapper_msg.innerHTML = '<span style="font-size:15px; margin-top:5px;">Searching...</span><div class="loader"></div>';
   // query in both tables
   if(query.search_mode==='match'){
     try{
       result_wyas = db.exec(`select highlight(wyas_fts, 0, '<span class="highlight">', '</span>'),link,date,type,part from wyas_fts where text match ? AND text NOTNULL`,[query.keyword]);
       result_alcb = db.exec(`select highlight(alcb_fts, 0, '<span class="highlight">', '</span>'),credit,link,date,type,part from alcb_fts where text match ? AND text NOTNULL`,[query.keyword]);   
     }catch(err){
-      document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
+      wrapper_msg.innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
       return;
     }
   }else if(query.search_mode==='match_exact'){
@@ -41,7 +44,7 @@ function searchSubmit(form,db){
       result_wyas = db.exec(`select highlight(wyas_exact_fts, 0, '<span class="highlight">', '</span>'),link,date,type,part from wyas_exact_fts where text match ? AND text NOTNULL`,[query.keyword]);
       result_alcb = db.exec(`select highlight(alcb_exact_fts, 0, '<span class="highlight">', '</span>'),credit,link,date,type,part from alcb_exact_fts where text match ? AND text NOTNULL`,[query.keyword]);   
     }catch(err){
-      document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
+      wrapper_msg.innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
       return;
     }   
   }else if(query.search_mode==='like'){
@@ -49,7 +52,7 @@ function searchSubmit(form,db){
       result_wyas = db.exec(`select text,link,date,type,part from wyas_fts where text like ? AND text NOTNULL`,[query.keyword]);
       result_alcb = db.exec(`select text,credit,link,date,type,part from alcb_fts where text like ? AND text NOTNULL`,[query.keyword]);   
     }catch(err){
-      document.getElementById('wrapper').innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
+      dwrapper_msg.innerHTML = '<span style="font-size:15px; margin-top:5px;">' + err + '</span>';
       return;
     }      
   }
@@ -66,7 +69,7 @@ function searchSubmit(form,db){
       date_list_wyas = date_list_wyas.filter(function(item, index, arr) {
           return arr.indexOf(item, 0) === index;});
   }
-  document.querySelector('label[for=source_1]').innerText = 'WYAS ('+date_list_wyas.length+')';
+  wyas_msg.innerText = 'WYAS ('+date_list_wyas.length+')';
  
   if (result_alcb.length>0) {
       result_alcb = result_alcb[0]; 
@@ -80,9 +83,9 @@ function searchSubmit(form,db){
       date_list_alcb = date_list_alcb.filter(function(item, index, arr) {
           return arr.indexOf(item, 0) === index;});
   }
-  document.querySelector('label[for=source_2]').innerText = 'ALCB blogs ('+date_list_alcb.length+')';
+  alcb_msg.innerText = 'ALCB blogs ('+date_list_alcb.length+')';
 
-  document.getElementById('wrapper').innerText = "";
+  wrapper_msg.innerText = "";
 
   //merge results. calculate hits
   if (query.source.indexOf("WYAS")===-1){
@@ -180,7 +183,7 @@ function yearHitsHeat(merged_result){
     if (Math.max.apply(null,year_hits)===0){
       var colorGradient = d3.interpolate('#ffffff','#ffffff');
     }else{
-      var colorGradient = d3.interpolate('#ffffff','#473C8B');
+      var colorGradient = d3.interpolate('#ffffff','#0003A9');
     }
     var gridSize = 20;
 
@@ -205,24 +208,23 @@ function yearHitsHeat(merged_result){
     dimension.height = dimension.boundedHeight+dimension.margin.top+dimension.margin.bottom;      
     var wrapper = d3.select('#wrapper').append('svg').attr('id','year_hits_plot').
                 attr('width','100%').attr('height',dimension.height);
-    document.getElementById('year_hits_plot').style.margin = dimension.margin.top+' '+dimension.margin.right+' '+dimension.margin.bottom+' '+dimension.margin.left;
+    document.getElementById('year_hits_plot').style.margin = dimension.margin.top+'px '+dimension.margin.right+' '+dimension.margin.bottom+' '+dimension.margin.left+'px';
     var bounds = wrapper.append('g').style('transform',`translate(${dimension.margin.left}px),${dimension.margin.top}px`)
     var barPadding = 5;
     var totalBarDimension = d3.min([20,20]);
-    var barDimension = totalBarDimension-barPadding;
+    var barDimension = totalBarDimension-barPadding-1;
 
-    bounds.append('text').attr('x',360).attr('y',20).attr('dx',10).attr('dy',12).text('1840')
-    bounds.append('text').attr('x',0).attr('y',0).attr('dy',12).text('1806')
-    bounds.append('text').attr('x',0).attr('y',20).attr('dy',12).text('1824')
+    bounds.append('text').attr('x',360).attr('y',20+1).attr('dx',10).attr('dy',12).text('1840')
+    bounds.append('text').attr('x',0).attr('y',0+1).attr('dy',12).text('1806')
+    bounds.append('text').attr('x',0).attr('y',20+1).attr('dy',12).text('1824')
 
     var heatMap = bounds.selectAll(".yearhits")
       .data(year_hits)
       .enter()      
       .append("rect")
       .attr("x", function(d, i){ return (i % 18)*gridSize+32;})
-      .attr("y", function(d, i){ return parseInt(i / 18)*gridSize;})
-      .style("outline","1px solid rgba(27,31,35,0.4)")
-      .style("outline-offset","-1px")
+      .attr("y", function(d, i){ return parseInt(i / 18)*gridSize+1;})
+      .style("outline","1px solid rgba(27,31,35,0.6)")
       .style("cursor","pointer")
       .attr("class", "yearhits")
       .attr("year_id",function(d,i){return (i+1806)})
@@ -254,7 +256,7 @@ function yearHitsHeat(merged_result){
     year_hits.map((x,idx)=>{
       if (x===0){
         bounds.append('text').attr('id','none-hits')
-        .attr('x',(idx % 18)*gridSize).attr('y',parseInt(idx / 18)*gridSize)
+        .attr('x',(idx % 18)*gridSize-0.5).attr('y',parseInt(idx / 18)*gridSize+1)
         .attr('dx',36).attr('dy',12)
         .text('0')
       }
@@ -266,7 +268,7 @@ function wc2RegExp(query){
  var index_wc = [];
   var reg ='';
   for (var i = 0;i<query.length;i++){
-    if (query[i]==='%'|query[i]==='_'){
+    if (query[i]==='%'||query[i]==='_'){
       index_wc.push({
         idx: i,
         wc: query[i]
@@ -290,7 +292,7 @@ function wc2RegExp(query){
         reg += '[\\s\\S]{'+Number(j-i).toString()+'}'
         i = j-1;
       }
-      else if (index_wc[i].wc==='%'&i<index_wc.length-1){
+      else if (index_wc[i].wc==='%'&&i<index_wc.length-1){
         reg += '[\\s\\S]*'
       }
     }
@@ -393,17 +395,59 @@ function ftsAbstract(merged_result,current_year){
   })
 }
 
-async function loadDB(){
+async function loadDB(){   
+    var wrapper_msg = document.getElementById('wrapper')
+    wrapper_msg.innerHTML = '<span style="font-size:15px; margin-top:5px;">Connecting to database...</span><div class="loader"><div>';
+    var loadingBar = document.querySelector(".progress-bar")
     var res = new Object;
     const sqlPromise = initSqlJs({
       locateFile: file => `../scripts/sql-wasm.wasm`
     });
-    const dataPromise = fetch("../data/journal.db").then(res => res.arrayBuffer());
+    let total = null;
+    let chunks = null;
+    let loaded = 0;
+    const logProcess = (res) => {
+        const reader = res.body.getReader();
+        const push = ({ value, done }) => {
+            if (done) return chunks;
+            chunks.set(value, loaded);
+            loaded += value.length;
+            if (total === null) {
+                console.log(`Downloaded ${loaded}`);
+            } else {
+                loadingBar.ariaValueNow = (loaded / total * 100)
+                loadingBar.style.width = `${(loaded / total * 100).toFixed(2)}%`
+            }
+            return reader.read().then(push);
+        };
+        return reader.read().then(push);
+    };
+    // const dataPromise = fetch("https://raw.githubusercontent.com/jiangjy-713/AL_Index/master/data/journal.db")
+    const dataPromise = fetch("../data/journal.db")
+                   .then((res) => {
+                        total = res.headers.get('content-length')
+                        chunks = new Uint8Array(total)
+                        return res
+                    }).then(logProcess)
     const [SQL, buf] = await Promise.all([sqlPromise, dataPromise])
-    document.querySelector('.loading').style.display = "none";
+    chunks = null;     
+    wrapper_msg.innerHTML = '<span style="font-size:15px; margin-top:5px;">Database loaded</span>';
+    document.querySelector('.loading-mask').style.display = "none";
     db = new SQL.Database(new Uint8Array(buf));
     return db;
 }
+
+// async function loadDB(){
+//     var res = new Object;
+//     const sqlPromise = initSqlJs({
+//       locateFile: file => `../scripts/sql-wasm.wasm`
+//     });
+//     const dataPromise = fetch("../data/journal.db").then(res => res.arrayBuffer());
+//     const [SQL, buf] = await Promise.all([sqlPromise, dataPromise])
+//     document.querySelector('.loading').style.display = "none";
+//     db = new SQL.Database(new Uint8Array(buf));
+//     return db;
+// }
 
 var db = loadDB();
 var fts_result = [];

@@ -135,7 +135,11 @@ function openNav(){
     search_form.style.setProperty('width', 'calc(100% - 20px)')     
     search_form.style.left = "15px";      
     search_form.style.borderBottom = "1px solid black";      
-    document.querySelector("#search-options").style.display = "";      
+    document.querySelector("#search-options").style.display = ""; 
+    loading_mask = document.querySelector(".loading-mask"); 
+    if(loading_mask){
+        loading_mask.style.width="410px";
+    }    
 }
 
 function closeNav(){
@@ -152,7 +156,11 @@ function closeNav(){
     search_form.style.width = ""; 
     search_form.style.left = ""; 
     search_form.style.borderBottom = "";      
-    document.querySelector("#search-options").style.display = "none";           
+    document.querySelector("#search-options").style.display = "none";   
+    loading_mask = document.querySelector(".loading-mask");        
+    if(loading_mask){
+        loading_mask.style.width="0";
+    }
 }
 
 function SearchOpt() {

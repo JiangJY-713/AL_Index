@@ -41,6 +41,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	</ul>
 	<div id="placeholder" style="height:60px"></div>
 	<div style="position: fixed; right: 0;top:0%;height: 100%">
+		<div class="loading-mask" style="left: -410px; height: 100%;background-color: rgba(0,0,0,0.08);">
+			<div class="progress" style="background-color: white; width:calc(100% - 10px);height: 5px;position: absolute;">
+			  <div class="progress-bar" role="progressbar"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="position: relative;"></div>
+			</div>
+		</div>
 		<div id="searchNav" class="sidenav">
 			<span class="close" onclick="closeNav()" style="cursor: pointer;"></span>
 			<form id="search" method="get" class="search-form" action="">
@@ -85,12 +90,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 			</form>
 			<div id="search-result" style="margin-top: 60px">
-				<div id="wrapper" style="position: absolute;">
-					<div class="loading">
-				        <span></span>
-				        <span></span>
-				        <span></span>
-					</div>
+				<div id="wrapper">
 				</div>
 				<div>
 				<div id="fts-abstract">
