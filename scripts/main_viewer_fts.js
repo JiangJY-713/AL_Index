@@ -83,10 +83,10 @@ var calendar = new Calendar('#calendar', {
                 if (events[i].Tr.findIndex(item=>item.type==="AW's journal")===-1&
                     events[i].wyasLink.findIndex(item=>item.type==="AW's journal"&item.tr==="y")===-1) {
                     elt.style.outline = "2px dotted "+colorScheme[5]
-                    elt.style.outlineOffset = "-2px"
+                    elt.style.outlineOffset = "-1px"
                 }else{
                     elt.style.outline = "2px solid "+colorScheme[5]
-                    elt.style.outlineOffset = "-2px"
+                    elt.style.outlineOffset = "-1px"
                 }
                 elt.style.borderRadius = "50%"
             }
