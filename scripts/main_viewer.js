@@ -96,10 +96,12 @@ var calendar = new Calendar('#calendar', {
             if (events[i].wyasLink.findIndex(item=>item.type==="AW's journal")!==-1) {
                 if (events[i].Tr.findIndex(item=>item.type==="AW's journal")===-1&&
                     events[i].wyasLink.findIndex(item=>item.type==="AW's journal"&&item.tr==="y")===-1) {
-                    elt.style.border = "2px dotted "+colorScheme[5]
+                    elt.style.outline = "2px dotted "+colorScheme[5]
+                    elt.style.outlineOffset = "-2px"
                     elt.style.borderRadius = "50%"
                 }else{
-                    elt.style.border = "2px solid "+colorScheme[5]
+                    elt.style.outline = "2px solid "+colorScheme[5]
+                    elt.style.outlineOffset = "-2px"
                     elt.style.borderRadius = "50%"
                 }
             }
