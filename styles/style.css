@@ -236,7 +236,7 @@ input[type="search"] {
   
   margin: 0px;
   font-size: 15px;
-  line-height: 10px;
+  line-height: 20px;
 }
 .nav-list a:hover{
   color: orange;
@@ -310,9 +310,9 @@ input[type="search"] {
     border-radius: 50%;
     display: inline-block;
     position: relative;
-    -webkit-animation: rotation 1s linear infinite;
-    -o-animation: rotation 1s linear infinite;
-       animation: rotation 1s linear infinite;
+    -webkit-animation: rotation 1.2s linear infinite;
+    -o-animation: rotation 1.2s linear infinite;
+       animation: rotation 1.2s linear infinite;
 }
 
 .loader:after {
