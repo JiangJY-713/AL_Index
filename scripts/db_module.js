@@ -92,9 +92,12 @@ function insertWYAS_ENTRY(db,data,start_line,end_line){
                 }else if(finding_num_temp[0]==="CC00001"&finding_num_temp[1]==="7"&     //journal
                 finding_num_temp[2]==="9"&finding_num_temp[3]==="6"){
                     var finding_num = 'SH:7/ML/E/'+vol+'/'+('000'+page).slice(-4);
+                }else if(finding_num_temp[0]==="CC00001"&finding_num_temp[1]==="7"&     //journal in AC
+                finding_num_temp[2]==="9"&finding_num_temp[3]==="9"){
+                    var finding_num = 'SH:7/ML/AC/'+vol+'/'+('000'+page).slice(-3);
                 }
-                db.run('INSERT INTO wyas(entry_id, part, vol, page, finding_num, link) VALUES(?,?,?,?,?,?)',
-                [entry_id,part,vol,page,finding_num,link], function (err) {
+                db.run('INSERT INTO wyas(entry_id, part, vol, page, finding_num, link, date, type) VALUES(?,?,?,?,?,?,?,?)',
+                [entry_id,part,vol,page,finding_num,link,date,type], function (err) {
                     if (err) {
                         return console.log(err.message)
                     }
@@ -141,6 +144,62 @@ async function insertALCB(db,data,start_line, end_line){
     console.timeEnd('insert alcb')
     console.log('Finish!')
 }
+
+function isIncremental(arr){
+  return  arr.reduce((prev, item, index, arr) => {
+  if (index === 0) return true;
+  if (prev !== true) return prev;
+  return item - arr[index-1] === 1 ? true : arr[index-1] + 1;
+  }, true)
+} 
+
+// Insert newly discovered entry, reading from Excel file. Each time insert one type of entry
+async function insertWYAS_New(db,start_line,end_line){
+    var sheets = xlsx.parse('../data/Archive Compilation.xlsx');
+    var oSheet = sheets.find(element=>element.name==='new found').data; 
+    oSheet = oSheet.filter(item=>typeof(item[0])!=="undefined" & typeof(item[1]) !=="undefined" & typeof(item[2]) !=="undefined" ); 
+    oSheet = oSheet.slice(start_line-1,end_line)
+    oSheet = arrayGroupBy(oSheet,0)  //group by date, unified entry type
+    var entry_list = await new Promise((resolve, reject) => {                
+        db.all('SELECT entry_id,date,type FROM entry', (err, rows) => {
+            if (err)
+                reject(err)
+            resolve(rows)
+        })
+    }).catch(err=>console.log('load entry_id error: ', err.message))
+    var id_arr = entry_list.map(x=>x.entry_id).sort((a,b)=>a-b);
+    var k = 1
+    for (var i=0;i<oSheet.length;i++){
+        if (isIncremental(id_arr)===true){
+            var entry_id = Math.max(...id_arr)+1
+        }else{
+            var entry_id = isIncremental(id_arr)
+        }
+        var date = oSheet[i][0][0]; var type = oSheet[i][0][1];   
+        await db.run('INSERT INTO entry(entry_id, date, type) VALUES(?,?,?)',[entry_id,date,type], function (err) {
+            if (err) {
+                return console.log(err.message)
+            }
+            console.log('inserted: TABLE entry  '+ ['entry_id:'+entry_id+' '+date+' '+type])
+        })      
+        id_arr.push(entry_id)
+        id_arr.sort((a,b)=>a-b)  // update id_arr
+        for (var j=0;j<oSheet[i].length;j++){
+            console.log('row ('+k + ') ' + entry_id +' '+ oSheet[i][j][1] + ' ' + oSheet[i][j][0] + ' ' +oSheet[i][j][2]);
+            var finding_num = oSheet[i][j][2];var vol = oSheet[i][j][3]; var page =oSheet[i][j][4] ;
+            var link = oSheet[i][j][5]; var part = oSheet[i][j][6];    
+            await db.run('INSERT INTO wyas(entry_id, part, vol, page, finding_num, link, date, type) VALUES(?,?,?,?,?,?,?,?)',
+            [entry_id,part,vol,page,finding_num,link,date,type], function (err) {
+                if (err) {
+                    return console.log(err.message)
+                }
+                console.log('inserted: TABLE wyas  '+ ['entry_id:'+entry_id+' type:'+type+' vol:'+vol+' page:'+page])
+            })  
+            k+=1;
+        }
+    }
+}
+
 
 // Regular ALCB Transcipts maintenance, reading from Excel file
 async function updateALCBdoc(db,mode){
@@ -196,6 +255,8 @@ function updateWYASdoc(vol_type, vol_index, db){
         case "AW's journal":
             var prefix = "WYAS4971/7/1/5/"+vol_index;
             break;
+        case "journal [in AC]":
+            var prefix = "CC00001/7/9/9/"+vol_index;
     }
     db.all('SELECT link,date,type,entry_id,part FROM wyas WHERE link LIKE (?)',["%"+prefix+"/%"],(err,rows)=>{
         if (err)
@@ -371,9 +432,9 @@ async function crawler_single(doc,db,mode){
             if (text!==""){
                 doc.text = text;
             }else{
-                current_time = new Date().toLocaleString()
+                var current_time = new Date().toLocaleString()
                 console.log('Failed to fetch text: entry_id = '+doc.entry_id+'  part:'+doc.part)
-                fs.appendFileSync('update alcb error.txt', current_time+'  Failed to fetch text: entry_id = '+doc.entry_id+'  part:'+doc.part+'\n')
+                fs.appendFileSync('../data/update alcb error.txt', current_time+'  Failed to fetch text: entry_id = '+doc.entry_id+'  part:'+doc.part+'\n')
             }
             updateTR_inDB(doc,db,mode)
         }else if(mode.includes('wyas')){
@@ -381,7 +442,7 @@ async function crawler_single(doc,db,mode){
             var text_list = $('td.tabletitle:contains(Description)').next().text().split("\n");
             text_list.splice(0,1);
             // if other than journal, update manually
-            if (doc.findIndex(item=>item.type!=='journal')===-1){
+            if (doc.findIndex(item=>item.type!=='journal'&item.type!=='journal [in AC]')===-1){
                 for (var i in doc){
                     var date_mode = new RegExp('^'+DateModeList(doc[i].date)[0]+'|'+DateModeList(doc[i].date)[0]+'$')
                     // var date_mode_h = new RegExp('^'+DateModeList(doc[i].date)[0])
@@ -544,6 +605,7 @@ async function updateTR_inDB(doc,db,mode){
 exports.createDBtable = createDBtable;
 exports.insertWYAS_ENTRY = insertWYAS_ENTRY;
 exports.insertALCB = insertALCB;
+exports.insertWYAS_New = insertWYAS_New;
 exports.updateALCBdoc = updateALCBdoc;
 exports.updateWYASdoc = updateWYASdoc;
 exports.crawler_single = crawler_single;

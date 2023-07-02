@@ -209,6 +209,7 @@ input[type="search"] {
   /*display: none;*/
   float: right;
   margin-top: 15px;
+  margin-right: 15px;
   width: 120px;
 }
 

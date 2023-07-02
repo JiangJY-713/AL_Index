@@ -16,17 +16,17 @@ var db = new sqlite3.Database(
 
 // var data = require('../../data/data.json')
 
-// var start_line = 9252;
-// var end_line = 9257;
+// var start_line = 2;
+// var end_line = 136;
 
 // db_op.createDBtable(db,['wyas'])  //create selected tables in database
 
 // db_op.insertWYAS_ENTRY(db,data,start_line, end_line)  // initial insert from calendar JSON data
 // db_op.insertALCB(db,data,start_line, end_line,'insert alcb')     // initial insert from calendar JSON data
 // db_op.insertALCB(db,data,start_line, end_line,'update alcb') 
-
-db_op.updateALCBdoc(db,'insert alcb')
+// db_op.insertWYAS_New(db,start_line, end_line)
+// db_op.updateALCBdoc(db,'insert alcb')
         
-// db_op.updateWYASdoc('journal', "26/3", db)
+db_op.updateWYASdoc('journal [in AC]', "25", db)
 
 

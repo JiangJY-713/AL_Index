@@ -67,17 +67,17 @@ var calendar = new Calendar('#calendar', {
             elt.style.color = colorScheme[0]
         }
         for (var i in events){
-            // journal
-            if (events[i].wyasLink.findIndex(item=>item.type==="journal")===-1) {
+            // journal or journal [in AC]
+            if (events[i].wyasLink.findIndex(item=>item.type==="journal"|item.type==="journal [in AC]")===-1) {
                 elt.style.color = colorScheme[4]
-            }else if (events[i].Tr.findIndex(item=>item.type==="journal")===-1&&
-                events[i].wyasLink.findIndex(item=>item.type==="journal"&&item.tr==="y")===-1) {
+            }else if (events[i].Tr.findIndex(item=>item.type==="journal")===-1&
+                events[i].wyasLink.findIndex(item=>(item.type==="journal"|item.type==="journal [in AC]")&item.tr==="y")===-1) {
                 parent.style.backgroundColor = colorScheme[0]
             }
             //journal index; itinerary; travel accounts
-            if (events[i].wyasLink.findIndex(item=>item.type==="journal index"||item.type==="travel accounts"||item.type==="itinerary")!==-1) {
-                if (events[i].Tr.findIndex(item=>item.type==="journal index"||item.type==="travel accounts"||item.type==="itinerary")===-1&&
-                    events[i].wyasLink.findIndex(item=>(item.type==="journal index"||item.type==="travel accounts"||item.type==="itinerary")&&item.tr==="y")===-1) {
+            if (events[i].wyasLink.findIndex(item=>item.type==="journal index"|item.type==="travel accounts"|item.type==="itinerary")!==-1) {
+                if (events[i].Tr.findIndex(item=>item.type==="journal index"|item.type==="travel accounts"|item.type==="itinerary")===-1&
+                    events[i].wyasLink.findIndex(item=>(item.type==="journal index"|item.type==="travel accounts"|item.type==="itinerary")&item.tr==="y")===-1) {
                     parent.style.borderBottom = "1px solid "+colorScheme[2]
                 }else{
                     parent.style.borderBottom = "2px solid "+colorScheme[2]
@@ -85,19 +85,18 @@ var calendar = new Calendar('#calendar', {
             }
             //travel notes
             if (events[i].wyasLink.findIndex(item=>item.type==="travel notes")!==-1) {
-                if (events[i].Tr.findIndex(item=>item.type==="travel notes")===-1&&
-                    events[i].wyasLink.findIndex(item=>item.type==="travel notes"&&item.tr==="y")===-1) {
+                if (events[i].Tr.findIndex(item=>item.type==="travel notes")===-1&
+                    events[i].wyasLink.findIndex(item=>item.type==="travel notes"&item.tr==="y")===-1) {
                     parent.style.outline = "2px dotted "+colorScheme[1]
-                    parent.style.outlineOffset = "-4px"
                 }else{
-                    parent.style.outline = "2px solid "+colorScheme[1]
-                    parent.style.outlineOffset = "-4px"
+                    parent.style.outline = "2px solid "+colorScheme[1]    
                 }
+                parent.style.outlineOffset = "-4px"
             }
             //AW's journal
             if (events[i].wyasLink.findIndex(item=>item.type==="AW's journal")!==-1) {
-                if (events[i].Tr.findIndex(item=>item.type==="AW's journal")===-1&&
-                    events[i].wyasLink.findIndex(item=>item.type==="AW's journal"&&item.tr==="y")===-1) {
+                if (events[i].Tr.findIndex(item=>item.type==="AW's journal")===-1&
+                    events[i].wyasLink.findIndex(item=>item.type==="AW's journal"&item.tr==="y")===-1) {
                     elt.style.outline = "2px dotted "+colorScheme[5]
                     elt.style.outlineOffset = "-1px"
                     elt.style.borderRadius = "50%"
@@ -199,8 +198,8 @@ document.querySelector('#TrProgress').addEventListener('click', function() {
                 bar = document.createElement("progress")
                 entry_num = data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="journal")!==-1)).length
                             +data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="travel notes")!==-1)).length
-                annual_Tr = data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="journal"&&x.tr==="y")!==-1||item.Tr.findIndex(x=>x.type==="journal")!==-1)).length
-                            +data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="travel notes"&&x.tr==="y")!==-1||item.Tr.findIndex(x=>x.type==="travel notes")!==-1)).length
+                annual_Tr = data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="journal"&x.tr==="y")!==-1|item.Tr.findIndex(x=>x.type==="journal")!==-1)).length
+                            +data_annual.filter(item=>(item.wyasLink.findIndex(x=>x.type==="travel notes"&x.tr==="y")!==-1|item.Tr.findIndex(x=>x.type==="travel notes")!==-1)).length
                 if (entry_num>0){
                     bar.max = entry_num
                     bar.value = annual_Tr;
@@ -235,16 +234,16 @@ function addEvent(dataSource,event){
         entry_exist = 0;
         for (var i in dataSource) {
             if (dataSource[i].startDate.getTime() === event.startDate.getTime()) {
-                if (dataSource[i].Tr.length === 1 && dataSource[i].Tr[0].credit === ""){
+                if (dataSource[i].Tr.length === 1 & dataSource[i].Tr[0].credit === ""){
                     dataSource[i].Tr[0].credit = event.name;
                     dataSource[i].Tr[0].link = [event.location];
                     dataSource[i].Tr[0].type = event.type;
                 }else{
                     credit_exist = 0;
                     for(var j in dataSource[i].Tr){
-                        if (dataSource[i].Tr[j].link.includes(event.location)&&dataSource[i].Tr[j].type===event.type){
+                        if (dataSource[i].Tr[j].link.includes(event.location)&dataSource[i].Tr[j].type===event.type){
                             credit_exist = 1;
-                        }else if(dataSource[i].Tr[j].credit===event.name&&dataSource[i].Tr[j].type===event.type){
+                        }else if(dataSource[i].Tr[j].credit===event.name&dataSource[i].Tr[j].type===event.type){
                             dataSource[i].Tr[j].link.push(event.location);
                             credit_exist = 1;
                         }
@@ -323,25 +322,31 @@ function TypeFormat(type){
     colorScheme = ["#E8E8E8","#00CD66","black","#0000CD","#CFCFCF", "#EE82EE"];
     if (type === "journal"){
         typeWformat = type;
-    }else if (type === "journal index"||type === "travel accounts"||type === "itinerary") {
+    }else if (type === "journal index"|type === "travel accounts"|type === "itinerary") {
         typeWformat = '<u>'+type+'</u>';
     }else if (type === "travel notes") {
         typeWformat = '<font color="'+colorScheme[1]+'">'+type+'</font>'
     }else if (type === "AW's journal") {
         typeWformat = '<font color="'+colorScheme[5]+'">'+type+'</font>'
-    }
+    }else{typeWformat=type}
     return typeWformat;
 }
 
 function wyaslink2page(url){
-    url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/6/26/"
+    url_prefix_26 = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/6/26/"
+    url_prefix_ac = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/9/"
     pageText_arr = url.split("/").slice(-2)
-    if (url.includes(url_prefix)){
-        pageText = "26(" + pageText_arr[0]+")-p"+pageText_arr[1]
+    if (url.includes(url_prefix_26)){
+        pageText = "26(" + pageText_arr[0]+")-p"+pageText_arr[1] 
     }else{
         pageText = pageText_arr[0]+"-p"+pageText_arr[1]
     }
-    return "Vol."+pageText
+
+    if (url.includes(url_prefix_ac)) {
+        return "AC-Vol."+pageText
+    }else{
+        return "Vol."+pageText
+    }
 }
 
 function DispRef(entry){
@@ -433,7 +438,7 @@ function dailyMaintain(file, callback) {
         dataSource = calendar._dataSource;
         oSheet = workbook.Sheets["daily maintain"];
         for(var i=2;typeof(oSheet["A"+i]) !=="undefined";i++){ 
-            if(typeof(oSheet["B"+i]) !=="undefined" && typeof(oSheet["C"+i]) !=="undefined" ){
+            if(typeof(oSheet["B"+i]) !=="undefined" & typeof(oSheet["C"+i]) !=="undefined" ){
                 event = new Object;
                 event.startDate = id2Date(oSheet["B"+i].v.toString());
                 event.endDate = event.startDate;
@@ -461,7 +466,8 @@ function addWYAS(file,callback){
         oSheet = workbook.Sheets["journal"];
         oSheetTN = workbook.Sheets["travel notes"];
         oSheetAW = workbook.Sheets["AW's journal"];
-        oSheet = oSheet;
+        oSheetBLK = workbook.Sheets["new found"]
+        oSheet = oSheetBLK;
         for(i=2;typeof(oSheet["F"+i])!=="undefined";i++){
             console.log(i)
             if (i===1564) {
@@ -508,8 +514,9 @@ function updateTrWYAS(vol_type,vol_index){
     dataSource = calendar._dataSource
     url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/"
     if (vol_type === "journal") {url_prefix += "6/"}
-        else if (vol_type === "travel notes") {url_prefix += "10"}
+        else if (vol_type === "travel notes") {url_prefix += "10/"}
             else if(vol_type === "AW's journal"){url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=WYAS4971/7/1/5/"}
+                else if(vol_type === "journal [in AC]"){url_prefix += "9/"}
     url_prefix += vol_index+"/"
     for (i = 0; i<dataSource.length; i++){
         for (j in dataSource[i].wyasLink){
@@ -519,6 +526,6 @@ function updateTrWYAS(vol_type,vol_index){
         }
     }
     calendar.setDataSource(dataSource)
-    obj = packEntry(calendar._dataSource);
-    saveJSON(obj,"data.json");
+    // obj = packEntry(calendar._dataSource);
+    // saveJSON(obj,"data.json");
 }

@@ -52,11 +52,11 @@ var calendar = new Calendar('#calendar', {
             elt.style.color = colorScheme[0]
         }
         for (var i in events){
-            // journal
-            if (events[i].wyasLink.findIndex(item=>item.type==="journal")===-1) {
+            // journal or journal in AC
+            if (events[i].wyasLink.findIndex(item=>item.type==="journal"|item.type==="journal [in AC]")===-1) {
                 elt.style.color = colorScheme[4]
             }else if (events[i].Tr.findIndex(item=>item.type==="journal")===-1&
-                events[i].wyasLink.findIndex(item=>item.type==="journal"&item.tr==="y")===-1) {
+                events[i].wyasLink.findIndex(item=>(item.type==="journal"|item.type==="journal [in AC]")&item.tr==="y")===-1) {
                 parent.style.backgroundColor = colorScheme[0]
             }
             //journal index; itinerary; travel accounts
@@ -134,8 +134,8 @@ function openNav(){
     search_field.style.width = "275px";   
     document.getElementById("search-mode").style.display = ""; 
     var search_form = document.querySelector(".search-form");
-    search_form.style.setProperty('width', 'calc(100% - 20px)')     
-    search_form.style.left = "15px";      
+    search_form.style.setProperty('width', 'calc(100% - 5px)')     
+    search_form.style.left = "18px";      
     search_form.style.borderBottom = "1px solid black";      
     document.querySelector("#search-options").style.display = ""; 
     loading_mask = document.querySelector(".loading-mask"); 
@@ -323,14 +323,20 @@ function packEntry(dataSource){
 }
 
 function wyaslink2page(url){
-    url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/6/26/"
+    url_prefix_26 = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/6/26/"
+    url_prefix_ac = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/9/"
     pageText_arr = url.split("/").slice(-2)
-    if (url.includes(url_prefix)){
-        pageText = "26(" + pageText_arr[0]+")-p"+pageText_arr[1]
+    if (url.includes(url_prefix_26)){
+        pageText = "26(" + pageText_arr[0]+")-p"+pageText_arr[1] 
     }else{
         pageText = pageText_arr[0]+"-p"+pageText_arr[1]
     }
-    return "Vol."+pageText
+
+    if (url.includes(url_prefix_ac)) {
+        return "AC-Vol."+pageText
+    }else{
+        return "Vol."+pageText
+    }
 }
 
 function EntryObj(){
@@ -530,8 +536,9 @@ function updateTrWYAS(vol_type,vol_index){
     dataSource = calendar._dataSource
     url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/"
     if (vol_type === "journal") {url_prefix += "6/"}
-        else if (vol_type === "travel notes") {url_prefix += "10"}
+        else if (vol_type === "travel notes") {url_prefix += "10/"}
             else if(vol_type === "AW's journal"){url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=WYAS4971/7/1/5/"}
+                else if(vol_type === "journal [in AC]"){url_prefix += "9/"}
     url_prefix += vol_index+"/"
     for (i = 0; i<dataSource.length; i++){
         for (j in dataSource[i].wyasLink){

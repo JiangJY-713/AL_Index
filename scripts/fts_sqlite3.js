@@ -1,5 +1,5 @@
 function searchSubmit(form,db){
-  var type_options = ["journal","travel notes","AW's journal","journal index","travel accounts","itinerary"];
+  var type_options = ["journal","travel notes","AW's journal","journal index","travel accounts","itinerary","journal [in AC]"];
   let formData = new FormData(form);
   let query = Object.create(null);
   query.keyword = formData.get('keyword');
@@ -184,6 +184,7 @@ function yearHitsHeat(merged_result){
       var colorGradient = d3.interpolate('#ffffff','#ffffff');
     }else{
       var colorGradient = d3.interpolate('#ffffff','#0003A9');
+      // var colorGradient = d3.interpolate('#ffffff','#2A5298');
     }
     var gridSize = 20;
 
@@ -395,7 +396,7 @@ function ftsAbstract(merged_result,current_year){
   })
 }
 
-async function loadDB(){   
+async function loadDB(){  
     var wrapper_msg = document.getElementById('wrapper')
     wrapper_msg.innerHTML = '<span style="font-size:15px; margin-top:5px;">Connecting to database...</span><div class="loader"><div>';
     var loadingBar = document.querySelector(".progress-bar")
@@ -435,6 +436,7 @@ async function loadDB(){
     document.querySelector('.loading-mask').style.display = "none";
     db = new SQL.Database(new Uint8Array(buf));
     return db;
+    // document.getElementById('search-field').focus();   
 }
 
 // async function loadDB(){
