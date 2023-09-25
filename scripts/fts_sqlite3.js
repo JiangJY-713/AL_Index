@@ -423,8 +423,8 @@ async function loadDB(){
         };
         return reader.read().then(push);
     };
-    // const dataPromise = fetch("https://raw.githubusercontent.com/jiangjy-713/AL_Index/master/data/journal.db")
-    const dataPromise = fetch("../data/journal.db")
+    const dataPromise = fetch("https://media.githubusercontent.com/media/JiangJY-713/AL_Index/main/data/journal.db")
+    // const dataPromise = fetch("../data/journal.db")
                    .then((res) => {
                         total = res.headers.get('content-length')
                         chunks = new Uint8Array(total)
