@@ -323,8 +323,8 @@ function packEntry(dataSource){
 }
 
 function wyaslink2page(url){
-    url_prefix_26 = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/6/26/"
-    url_prefix_ac = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/9/"
+    url_prefix_26 = "https://www.catalogue.wyjs.org.uk/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/6/26/"
+    url_prefix_ac = "https://www.catalogue.wyjs.org.uk/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/9/"
     pageText_arr = url.split("/").slice(-2)
     if (url.includes(url_prefix_26)){
         pageText = "26(" + pageText_arr[0]+")-p"+pageText_arr[1] 
@@ -534,10 +534,10 @@ function addWYAS(file,callback){
 
 function updateTrWYAS(vol_type,vol_index){
     dataSource = calendar._dataSource
-    url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/"
+    url_prefix = "https://www.catalogue.wyjs.org.uk/Record.aspx?src=CalmView.Catalog&id=CC00001/7/9/"
     if (vol_type === "journal") {url_prefix += "6/"}
         else if (vol_type === "travel notes") {url_prefix += "10/"}
-            else if(vol_type === "AW's journal"){url_prefix = "https://www.catalogue.wyjs.org.uk/CalmView/Record.aspx?src=CalmView.Catalog&id=WYAS4971/7/1/5/"}
+            else if(vol_type === "AW's journal"){url_prefix = "https://www.catalogue.wyjs.org.uk/Record.aspx?src=CalmView.Catalog&id=WYAS4971/7/1/5/"}
                 else if(vol_type === "journal [in AC]"){url_prefix += "9/"}
     url_prefix += vol_index+"/"
     for (i = 0; i<dataSource.length; i++){
