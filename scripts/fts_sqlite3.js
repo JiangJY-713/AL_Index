@@ -8,9 +8,9 @@ function searchSubmit(form,db){
   query.search_mode = formData.get('search-mode');
   var result_wyas = [];  var result_alcb =[];
   var date_list_wyas = []; var date_list_alcb = [];
-  wyas_msg = document.querySelector('label[for=source_1]')
-  alcb_msg = document.querySelector('label[for=source_2]')
-  wrapper_msg = document.getElementById('wrapper')
+  let wyas_msg = document.querySelector('label[for=source_1]')
+  let alcb_msg = document.querySelector('label[for=source_2]')
+  let wrapper_msg = document.getElementById('wrapper')
 
   if(query.search_mode==='like'){
       var reg = wc2RegExp(query.keyword);
@@ -103,7 +103,7 @@ function searchSubmit(form,db){
   // remove un-selected entry type. hits in each year is calculated with pruned results
   merged_result.map(y=>{
     y.result = y.result.filter(x=>query.entry_type.findIndex(item=>item===x.type)!==-1)
-    y.result.sort((a, b) => (type_options.findIndex(item=>item===a.type)>type_options.findIndex(item=>item===b.type)) ? 1 : -1)
+    y.result.sort((a, b) => (type_options.findIndex(item=>item===a.type)-type_options.findIndex(item=>item===b.type)))
   });
   merged_result = merged_result.filter(x=>x.result.length>0);
   merged_result.sort((a, b) => (a.date > b.date) ? 1 : -1);
@@ -379,15 +379,24 @@ function ftsAbstract(merged_result,current_year){
     x.result.map(y=>{
       var entry_block = document.createElement('div');
       entry_block.className = 'entry-abstract';
-      entry_block.setAttribute('entry_id',x.date);
+      // entry_block.setAttribute('entry_id',x.date);
       entry_block.onclick = function(){window.open(y.link)};
       var block_info = document.createElement('div');
       block_info.className = 'abstract-info';
       block_info.color = 'blue';
       block_info.innerHTML = x.date.replace(/,/g,'-')+' ( '+y.type+'; '+ y.credit +')';
+      // if(y.credit==="WYAS"){
+      //   var backup_btn = document.createElement('button');
+      //   backup_btn.className = 'wyas_backup';
+      //   backup_btn.setAttribute('backup_id',link2FN(y.link))
+      //   backup_btn.innerText = 'View Backup'
+      //   backup_btn.onclick = function(){window.open(y.link)};
+      //   block_info.appendChild(backup_btn)
+      // }
       var abstract = document.createElement('div');
       abstract.className = 'abstract-text';
       abstract.innerHTML = y.text;
+      // abstract.onclick = function(){window.open(y.link)};
 
       entry_block.appendChild(block_info);
       entry_block.appendChild(abstract);
@@ -395,6 +404,32 @@ function ftsAbstract(merged_result,current_year){
     })
   })
 }
+
+$('.wyas_backup').click(function(){
+  // var backup_id = this.backup_id
+  window.open("https://blog.csdn.net/ozhy111/article/details/88706786")
+})
+
+
+// function link2FN(wyas_link){
+//   var sublink = wyas_link.substring(wyas_link.indexOf('id=')+1)
+//   var sublink_parts = sublink.split('/')
+//   var finding_num = ''
+//   if (sublink.includes('CC00001/7/9/6/')) { //AL journal
+//     finding_num += 'SH-7-ML-E-'
+//     if(sublink.includes('CC00001/7/9/6/26')){
+//       finding_num += '26-'
+//     }
+//   }else if (sublink.includes('CC00001/7/9/10/')) {  //AL travel notes 
+//     finding_num += 'SH-7-ML-TR-'
+//   }else if (sublink.includes('WYC:1525/7/1/5/')){ //AW journal
+//     finding_num += 'WYC-1525-7-1-5-'
+//   }else if (sublink.includes('CC00001/7/9/9/')){ // AL journal in account book
+//     finding_num += 'SH-7-ML-AC-'
+//   }
+//   finding_num += sublink_parts.slice(-2,-1)+'-'+sublink_parts.slice(-1)
+//   return finding_num
+// }
 
 async function loadDB(){  
     var wrapper_msg = document.getElementById('wrapper')
@@ -414,7 +449,7 @@ async function loadDB(){
             chunks.set(value, loaded);
             loaded += value.length;
             if (total === null) {
-                console.log(`Downloaded ${loaded}`);
+                // console.log(`Downloaded ${loaded}`);
             } else {
                 loadingBar.ariaValueNow = (loaded / total * 100)
                 loadingBar.style.width = `${(loaded / total * 100).toFixed(2)}%`
@@ -423,20 +458,51 @@ async function loadDB(){
         };
         return reader.read().then(push);
     };
-    const dataPromise = fetch("https://media.githubusercontent.com/media/JiangJY-713/AL_Index/main/data/journal.db")
-    // const dataPromise = fetch("../data/journal.db")
+
+    var url_github = "https://media.githubusercontent.com/media/JiangJY-713/AL_Index/main/data/journal.db";
+    var url_dropbox = "https://dl.dropboxusercontent.com/scl/fi/bkgvwzm60b03nrofyqxdc/journal.db?rlkey=efjey3usmmzeazqwyzsslx243&st=fdgqoncq&dl=1";
+
+    let startTime = +new Date();
+    const dataPromise = fetch(url_github,{priority:'high'})
+    // const dataPromise = fetch("../data/journal.db")  //local host
                    .then((res) => {
                         total = res.headers.get('content-length')
                         chunks = new Uint8Array(total)
                         return res
                     }).then(logProcess)
+                   .catch((err)=>{
+                       console.error(`Github fetch error：${err.message}`)
+                   })
     const [SQL, buf] = await Promise.all([sqlPromise, dataPromise])
-    chunks = null;     
-    wrapper_msg.innerHTML = '<span style="font-size:15px; margin-top:5px;">Database loaded</span>';
-    document.querySelector('.loading-mask').style.display = "none";
-    db = new SQL.Database(new Uint8Array(buf));
-    return db;
-    // document.getElementById('search-field').focus();   
+    chunks = null;  
+    if(typeof(buf)==='undefined'){
+      const dataPromise = fetch(url_dropbox,{priority:'high'})
+                   .then((res) => {
+                        total = res.headers.get('content-length')
+                        chunks = new Uint8Array(total)
+                        return res
+                    }).then(logProcess)
+                   .catch((err)=>{
+                       console.error(`Dropbox fetch error：${err.message}`)
+                   })
+      const [SQL, buf] = await Promise.all([sqlPromise, dataPromise])
+      chunks = null; 
+      document.querySelector('.loading-mask').style.display = "none";
+         if(typeof(buf)==='undefined'){
+           wrapper_msg.innerHTML = '<span style="font-size:15px;">Network failed to access data from <a href='+url_github+' target="_blank">Github</a> or '+'<a href='+url_dropbox+' target="_blank">Dropbox</a>.<br>Try fixing this, or running locally in your PC.</span>'
+          }else{
+            document.getElementById('search-field').readOnly = false;
+            wrapper_msg.innerHTML = '<span style="font-size:15px;">Database loaded (Dropbox, '+ Math.floor((+new Date() - startTime)/1000) +'s)</span>';
+            db = new SQL.Database(new Uint8Array(buf));
+            return db;
+          }
+    }else{
+      document.querySelector('.loading-mask').style.display = "none";
+      document.getElementById('search-field').readOnly = false;
+      wrapper_msg.innerHTML = '<span style="font-size:15px;">Database loaded (Github, '+ Math.floor((+new Date() - startTime)/1000) +'s)</span>';
+      db = new SQL.Database(new Uint8Array(buf));
+      return db;
+    }
 }
 
 // async function loadDB(){

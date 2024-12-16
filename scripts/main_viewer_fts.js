@@ -131,11 +131,13 @@ function openNav(){
     search_field.style.backgroundSize = "18px 18px";
     search_field.style.border = "1px solid black";
     search_field.style.cursor = "text";           
-    search_field.style.width = "275px";   
+    search_field.style.width = "270px";   
+    search_field.style.marginLeft = "15px";   
     document.getElementById("search-mode").style.display = ""; 
     var search_form = document.querySelector(".search-form");
-    search_form.style.setProperty('width', 'calc(100% - 5px)')     
-    search_form.style.left = "18px";      
+    search_form.style.setProperty('width', 'calc(100%)')     
+    // search_form.style.setProperty('width', 'calc(100% - x5px)')     
+    search_form.style.left = "10px";      
     search_form.style.borderBottom = "1px solid black";      
     document.querySelector("#search-options").style.display = ""; 
     loading_mask = document.querySelector(".loading-mask"); 
@@ -169,15 +171,11 @@ function SearchOpt() {
     var opt_disp = document.getElementById("advanced-search").style.display;
     if (opt_disp==="none"){
             document.getElementById("advanced-search").style.display="";
-            document.getElementById("search-options-btn").style.top="-10px";
-            document.getElementById("search-tips-btn").style.top="-10px";
             document.getElementById("search-result").style.marginTop = "140px";
             document.getElementById("fts-abstract").style.setProperty('height','calc(100vh - 220px)');
             document.querySelector(".search-form").style.height = "140px";
     }else if(opt_disp===""){
             document.getElementById("advanced-search").style.display="none";
-            document.getElementById("search-options-btn").style.top="";
-            document.getElementById("search-tips-btn").style.top="";
             document.getElementById("search-result").style.marginTop = "60px";
             document.getElementById("fts-abstract").style.setProperty('height','calc(100vh - 140px)');
             document.querySelector(".search-form").style.height = "";

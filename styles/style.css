@@ -19,8 +19,8 @@ li a {
   padding: 5px;
   line-height: 50px;
   cursor:pointer;
-  margin-left: 10px;
-  margin-right: 10px;
+  /*margin-left: 10px;*/
+  margin-right: 5px;
   text-decoration: none;
   color: black;
 }
@@ -120,11 +120,20 @@ details + dl {
 
 #search-options-btn{
   position: relative;
-  /*margin-right: 5px;*/
+  top: -5px;
+  margin-left:5px;
+  float: left;
+  cursor: pointer;
+  color: blue;
 }
 
 #search-tips-btn{
   position: relative;
+  top:-5px;
+  margin-right:15px;
+  float: right; 
+  cursor: pointer; 
+  color: blue;
 }
 
 .search-form {
@@ -213,6 +222,7 @@ input[type="search"] {
   width: 120px;
 }
 
+
 .calendar-main{
   /*margin-right: 0;*/
   height: 100%;
@@ -258,6 +268,10 @@ input[type="search"] {
           box-shadow: 0px 3px 3px #CFCFCF;
 }
 
+#search-result{
+  margin-top: 60px;
+}
+
 #wrapper{
   font-size: 12px;
   width:100%;
@@ -288,18 +302,33 @@ input[type="search"] {
 }
 
 .entry-abstract{
-  cursor: pointer;
+  /*cursor: pointer;*/
   margin-top: 5px;
   border-bottom: 1px solid #9c9c9c;
 
 }
 
-.entry-abstract:hover{
+/*.entry-abstract:hover{
   background-color: #F6F6F6;
 }
-
+*/
 .abstract-info{
   color: blue;
+}
+
+.wyas_backup{
+  height: 19px;
+  float: inline-end;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.abstract-text{
+  cursor: pointer;
+}
+
+.abstract-text:hover{
+  background-color: #F6F6F6;
 }
 
 .loader {
